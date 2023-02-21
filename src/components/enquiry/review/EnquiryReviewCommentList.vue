@@ -1,8 +1,4 @@
 <template>
-
-    <BaseSpinner v-if="flgIsLoading">
-
-    </BaseSpinner>
     <div v-if="flgCommentsExist" class="overflow-hidden  p-4 bg-black rounded-md border-1 shadow-inner shadow-gray-500">
         <div
               class="bg-black shadow sm:rounded-lg md:rounded-md mx-2 overflow-hidden
@@ -156,7 +152,7 @@ const props = defineProps({
         default: 0
     }
 })
-console.log(props)
+//console.log(props)
 
 /*===============================================================================*/
 /* Emits
@@ -188,10 +184,10 @@ watch(() => props.changeMode, () => {
 //    Purpose:
 //        on a change in Name search field loads the enquiries list for that filter
 //     */
-    console.log(props.changeMode)
+    //console.log(props.changeMode)
 })
 watch(() => enquiryStore.enquiry.enquiry_comments.length, () => {
-    console.log("watcher saw change")
+    //console.log("watcher saw change")
     if (enquiryStore.enquiry.enquiry_comments.length > 0) {
         flgCommentsExist.value = true
     } else {
@@ -209,11 +205,11 @@ const {errorMessageHandler} = useErrorService()
 const {deleteEnquiryComment, getEnquiryComments} = useMiscService()
 const deleteComment = async (enquiryCommentToDeleteID, enquiryID) => {
     flgDeletingComment.value = true
-    console.log(enquiryCommentToDeleteID + " " + enquiryID)
+    //console.log(enquiryCommentToDeleteID + " " + enquiryID)
     try {
         await deleteEnquiryComment(enquiryCommentToDeleteID)
         let response = await getEnquiryComments(enquiryID)
-        console.log(response)
+        //console.log(response)
         enquiryStore.enquiry.enquiry_comments = response
         informationMessage.title = "Comment Deleted"
         emit('deleted')
@@ -224,7 +220,7 @@ const deleteComment = async (enquiryCommentToDeleteID, enquiryID) => {
     flgDeletingComment.value = false
 }
 const changeComment = (enquiryCommentID) => {
-    console.log("change mode ", "changeMode", enquiryCommentID)
+    //console.log("change mode ", "changeMode", enquiryCommentID)
     emit('changeComment', "change", enquiryCommentID)
 }
 
@@ -233,7 +229,7 @@ const onCancelled = () => {
     triggered by PhoneForm component to indicate user cancelled the add
     or change so toggle the flags off to remove the PhoneForm component
      */
-    console.log("cancellation received in list")
+    //console.log("cancellation received in list")
     flgAddingComment.value = false
     flgChangingComment.value = false
     informationMessage.title = "Change Cancelled"

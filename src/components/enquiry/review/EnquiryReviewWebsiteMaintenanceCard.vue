@@ -23,7 +23,7 @@
             <p class="mt-4 text-sm font-medium text-gray-400">
                 Maintenance Required
             </p>
-            <div class="grid md:grid-cols-2 sm:grid-cols-1">
+            <div class="grid md:grid-cols-4 sm:grid-cols-1">
                 <div class="mt-4 mx-2 col-span-1">
                     <BaseCheckbox
                           v-model="enquiry.bare_bones_chk"
@@ -38,8 +38,6 @@
                     >
                     </BaseCheckbox>
                 </div>
-
-
                 <div class="mt-4 mx-2 col-span-1">
                     <BaseCheckbox
                           v-model="enquiry.maintenance_plus_chk"

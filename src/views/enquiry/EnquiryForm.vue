@@ -1,54 +1,65 @@
 <template>
     <div>
         <Navbar2></Navbar2>
-        <div class="min-h-screen bg-black py-4 ">
-            <div class="bg-black mx-auto max-w-4xl">
-                <header class="grid relative bg-black">
-                    <div class="static inset-0">
-                        <img
-                              class="w-full object-cover "
-                              src="src/assets/images/websitedesign.jpg"
-                              alt=""/>
-                        <div
-                              class="absolute inset-0 "
-                              aria-hidden="true"/>
+        <div class="bg-black pt-10 sm:pt-16 lg:overflow-hidden lg:pt-8 md:pb-8 lg:pb-0">
+            <div class="mx-auto max-w-7xl lg:px-8">
+                <div  class="lg:grid lg:grid-cols-2 lg:gap-8 md:grid md:grid-cols-1">
+                    <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
+
+                        <div v-if="!flgSubmissionSuccessful" class="lg:py-8 ">
+                            <h1
+                                  class="text-5xl block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">
+                                Contact Me
+                            </h1>
+                            <div class="mx-auto max-w-7xl">
+                                <div class="flex mt-12">
+                                    <PhoneIcon class="block h-12 w-12 text-teal-500"></PhoneIcon>
+                                    <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl ml-6 text-left ">Call
+                                        <span class="text-base text-cyan-600 lg:text-lg xl:text-xl">Peter </span>on
+                                        <span class="text-base text-cyan-600 lg:text-lg xl:text-xl">07557 199365</span>. If
+                                        I'm not available,
+                                        please leave a message and contact number and I'll return your call you as soon as I
+                                        am able.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mx-auto max-w-7xl" >
+                                <p class="my-4  text-center  text-base text-teal-300 sm:text-xl lg:text-lg xl:text-xl">
+                                    - or -
+                                </p>
+                            </div>
+                            <div class="mx-auto max-w-7xl">
+                                <div class="flex mt-6">
+                                    <EnvelopeIcon class="block h-12 w-12 text-teal-500"></EnvelopeIcon>
+                                    <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl ml-6 text-left ">Mail me using
+                                        the form below, selecting the enquiry type
+                                        that most closely matches what you would like to talk about. I will respond as soon
+                                        as I am able.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="flgSubmissionSuccessful"
+                             class=" mx-auto max-w-7xl px-4 py-10 sm:col-span-1 md:col-span-2 lg:col-span-2 ">
+                            <EnquiryConfirmation></EnquiryConfirmation>
+                        </div>
                     </div>
-                </header>
+                    <div class="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0 ">
+                        <div class="mx-auto  max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                            <img class="lg:absolute lg:inset-y-0 lg:left-0 max-h-80 "
+                                 src="/src/assets/images/websitedesign.jpg" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="min-h-screen bg-black ">
+            <div class="bg-black mx-auto max-7-4xl md:pt-20 lg:pt-0 sm:pt-0">
                 <main>
-                    <div v-if="flgSubmissionSuccessful"
-                         class=" mx-auto max-w-4xl px-4 py-10 sm:col-span-1 md:col-span-2 lg:col-span-3 ">
-                        <EnquiryConfirmation></EnquiryConfirmation>
-                    </div>
+
                     <!-- Side-by-side grid -->
-                    <div v-else class=" mx-auto max-w-4xl px-4 py-10 sm:col-span-1 md:col-span-2 lg:col-span-3 ">
-                        <h2 class="text-teal-600 text-3xl  tracking-tight sm:text-4xl sm:tracking-tight">
-                            Contact Me
-                        </h2>
-                        <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                            You can contact me by phone or email.
-                        </p>
-                        <div class="mx-auto max-w-7xl">
-                            <div class="flex mt-12">
-                                <PhoneIcon class="block h-6 w-6 text-teal-500"></PhoneIcon>
-                                <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl ml-6 ">Call
-                                    <span class="text-base text-cyan-600 lg:text-lg xl:text-xl">Peter </span>on
-                                    <span class="text-base text-cyan-600 lg:text-lg xl:text-xl">07557 199365</span>. If
-                                    I'm not available,
-                                    please leave a message and contact number and I'll return your call you as soon as I
-                                    am able.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="mx-auto max-w-7xl">
-                            <div class="flex mt-12">
-                                <EnvelopeIcon class="block h-6 w-6 text-teal-500"></EnvelopeIcon>
-                                <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl ml-6 ">Mail me using
-                                    the form below, selecting the enquiry type
-                                    that most closely matches what you would like to talk about. I will respond as soon
-                                    as I am able.
-                                </p>
-                            </div>
-                        </div>
+                    <div v-if="!flgSubmissionSuccessful" class=" mx-auto max-w-7xl px-4 py-2 sm:col-span-1 md:col-span-2 lg:col-span-3 ">
                         <div
                               v-if="!flgSubmissionSuccessful"
                               class="p-6 mt-8 border-1 border-gray-100 rounded-sm shadow-md shadow-gray-300/50"
@@ -212,15 +223,15 @@ const onSubmit = async (e) => {
     let formsToValidate = []
     let sfm1 = await enquiryHeader.value.validateForm()
     formsToValidate.push(sfm1)
-    console.log(enquiryType.value)
+    //console.log(enquiryType.value)
     if (enquiryType.value === 'New Website') {
         let sfm2 = await enquiryNewWebsiteCard.value.validateForm()
-        console.log(sfm2)
+        //console.log(sfm2)
         formsToValidate.push(sfm2)
     }
     if (enquiryType.value === 'Redesign of Existing Website') {
         let sfm3 = await enquiryWebsiteRedesignCard.value.validateForm()
-        console.log(sfm3)
+        //console.log(sfm3)
         formsToValidate.push(sfm3)
     }
     if (enquiryType.value === 'Website Maintenance') {
@@ -239,7 +250,7 @@ const onSubmit = async (e) => {
     formsToValidate.push(sfm7)
 
     Promise.all(formsToValidate).then(result => {
-        console.log(result)
+        //console.log(result)
         let formValid = true
         for (const element of result) {
             if (element.valid === false) {
@@ -250,13 +261,13 @@ const onSubmit = async (e) => {
             }
         }
         if (formValid === true) {
-            console.log(consolidateFormValues)
+            //console.log(consolidateFormValues)
             saveEnquiry()
         } else {
             errorMessage.value.title = "Oops - something doesn't look right."
             errorMessage.value.description = "Please check that all the fields highlighted with a red asterisk are present, that " +
                   "there are no error messages showing  and then give it another go."
-            console.log("failed")
+            //console.log("failed")
             flgIsSubmitting.value = false
         }
     })
@@ -272,7 +283,7 @@ const saveEnquiry = async () => {
                   //flgSubmissionSuccessful.value = false
                   router.push({name: "home"})
               },
-              4000
+              2000
         )
 
     } catch (e) {

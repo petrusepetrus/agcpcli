@@ -75,21 +75,21 @@ export default {
             type: String,
             default: ""
         },
-        disabled:{
-            type:Boolean,
-            default:false
+        disabled: {
+            type: Boolean,
+            default: false
         },
-        labelClass:{
-            type:String,
-            default:"font-medium text-gray-700"
+        labelClass: {
+            type: String,
+            default: "font-medium text-gray-700"
         },
-        labelDescriptionClass:{
-            type:String,
-            default:"text-gray-500"
+        labelDescriptionClass: {
+            type: String,
+            default: "text-gray-500"
         },
-        inputClass:{
-            type:String,
-            default:"h-4 w-4 focus:ring-teal-500 focus:border-teal-500 rounded"
+        inputClass: {
+            type: String,
+            default: "h-4 w-4 focus:ring-teal-500 focus:border-teal-500 rounded"
         }
     },
     emits: ['update:modelValue'],

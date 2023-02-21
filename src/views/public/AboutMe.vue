@@ -6,12 +6,12 @@
                 <div class="px-8 col-span-1 bg-white my-8">
                     <div class="lg:order-first lg:row-span-2 mt-4">
                         <h1 class="text-4xl font-bold tracking-tight text-teal-800  sm:text-5xl">
-                            I’m Peter. I live in Cheshire, where I run my web design business.
+                            I’m Peter and I live in Cheshire, where I run my web design business.
                         </h1>
-                        <div class="mt-12 space-y-7 text-base text-teal-700">
-                            <div class="text-xl font-medium ">
+                        <div class="mt-12 space-y-7 text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl">
+                            <div class="">
                                 I started my web design and development business, <span class="font-medium text-cyan-600">Agapanthus Consulting</span>,
-                                in 2016 after spending over 30 years working in the IT Services industry, largely in and around large scale
+                                in 2016 after spending a little over 30 years working in the IT Services industry, largely in and around large scale
                                 business transformation programmes.
                                 <div class="text-sm mt-2 text-teal-700 ">(If you're interested in
                                     finding
@@ -24,22 +24,26 @@
                                     </a> profile for more information).
                                 </div>
                                 </div>
-                            <p class="text-xl font-medium ">
+                            <p class="">
                                 I now work predominantly with small businesses that are looking to
                                 create an integrated digital footprint across
                                 their website and digital marketing channels.
                             </p>
-                            <p class="text-xl font-medium ">
-                                I really love working with my clients. Trying to understand what they
-                                do as a business. Where they are trying to get to and the issues they
-                                are wrestling with. I find it all really interesting and get a lot of
-                                pleasure out of trying to come up with innovative
-                                uses for technology to help with those transformations.
+                            <p class="">
+                                I love working with my clients. Each business is unique and trying to understand
+                                what it does, where the client is trying to take it to and the issues they
+                                are wrestling with can be interesting, challenging and exciting.
+                                </p>
+                            <p>I emjoy trying to come up with innovative ways to use technology
+                                as part of these transformations and helping clients get a consistent presentation of
+                                their brand across their various marketing activities.
                             </p>
-                            <p class="text-xl font-medium ">
-                                In my spare time I enjoy cycling and walking in the countryside around
-                                the village where I live, particularly if a visit to a pub or cafe is involved at
-                                some point! I play the guitar and I enjoy cooking, South Indian food being a particular favourite.
+                            <p class="">
+                                When I'm not working, I enjoy taking in the countryside around
+                                the village where I live - particularly when a visit to a pub or cafe is involved! I enjoy
+                                cycling and when I get the chance, sailing is also a firm favourite. And if the weather's not so good
+                                then I enjoy reading, playing the guitar and cooking - though not necessarily all
+                                at the same time!
                             </p>
                         </div>
                     </div>
@@ -49,28 +53,30 @@
 
                         <div class="">
                             <img
-                                  src="src/assets/images/PeterStone2320x2320.png"
+                                  src="src/assets/images/peter 1024x1024.jpg"
                                   alt=""
                                   sizes="(min-width: 256px) 32rem, 20rem"
                                   class="rounded-2xl  object-cover "
                             />
                         </div>
 
-                    <div class="lg:pl-8 pt-12">
+                    <div class="lg:pl-8 pt-12 flex">
                         <ul v-for="navLink in navLinks"
                             :key="navLink.name">
 
-                            <div class="text-teal-300">
+                            <span class="text-teal-500  float-left pr-4">
+                                <a :href="navLink.href"
+                                   target=”_blank”
+                                class="pl-2">
+                                       <component
+                                             :is="navLink.icon"
+                                                  class="h-6 float-left"
+                                                  aria-hidden="true">
 
-
-                                <a :href="navLink.href" target=”_blank”>
-
-                                       <component :is="navLink.icon" class="h-8" aria-hidden="true"></component>
+                                       </component>
                                     {{ navLink.name }}
-
                                 </a>
-
-                            </div>
+                            </span>
 
                             <!--
                             <li>
@@ -105,10 +111,13 @@ const navLinks = [
         href: 'https://www.facebook.com/AgapanthusConsulting',
         icon: defineComponent({
             render: () =>
-                  h('svg', {fill: 'currentColor', viewBox: '0 0 24 24'}, [
+                  h('svg', {fill: 'currentColor', viewBox: '0 0 22 22'}, [
                       h('path', {
                           'fill-rule': 'evenodd',
-                          d: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z',
+                          d: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 ' +
+                                '9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 ' +
+                                '2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 ' +
+                                '2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z',
                           'clip-rule': 'evenodd',
                       }),
                   ]),

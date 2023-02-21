@@ -97,7 +97,7 @@ const enquiryStore = useEnquiryStore()
 /*-------------------------------------------------------------------------------*/
 import {useField, useForm, useIsFormDirty} from 'vee-validate'
 import {object, string} from 'yup'
-import generalUtilities from "../../../utils/GeneralUtilities.js";
+import {testIfPromise} from "../../../utils/GeneralUtilities.js";
 /*===============================================================================*/
 /* Props
 /*===============================================================================*/
@@ -117,7 +117,7 @@ const props = defineProps({
         default: null
     },
 })
-console.log(props)
+//console.log(props)
 /*===============================================================================*/
 /* Emits
 /*===============================================================================*/
@@ -195,11 +195,10 @@ watch(enquiry_comment, () => {
 /*===============================================================================*/
 const {addEnquiryComment, updateEnquiryComment} = useMiscService()
 const {errorMessageHandler} = useErrorService()
-const {testIfPromise} = generalUtilities()
 
 const onSubmit = handleSubmit(async (values) => {
-    console.log("in submit ")
-    console.dir(values)
+    //console.log("in submit ")
+    //console.dir(values)
     if (editMode.value === "change") {
         try {
             isSubmitting.value = true
@@ -217,19 +216,19 @@ const onSubmit = handleSubmit(async (values) => {
                  */
                     errorMessage.title = value.title
                     errorMessage.description = value.description
-                    console.log(errorMessage)
+                    //console.log(errorMessage)
                     //error.description=e
                 })
             } else {
                 errorMessage = await errorMessageHandler(e)
-                console.log(errorMessage)
+                //console.log(errorMessage)
             }
         }
     } else {
         try {
             isSubmitting.value = true
-            console.dir(values)
-            console.log(enquiryStore.enquiry.id)
+            //console.dir(values)
+            //console.log(enquiryStore.enquiry.id)
             await addEnquiryComment(enquiryStore.enquiry.id, values)
             isSubmitting.value = false
             updateMessage.title = "Success"
@@ -244,19 +243,19 @@ const onSubmit = handleSubmit(async (values) => {
                  */
                     errorMessage.title = value.title
                     errorMessage.description = value.description
-                    console.log(errorMessage)
+                    //console.log(errorMessage)
                     //error.description=e
                 })
             } else {
                 errorMessage = await errorMessageHandler(e)
-                console.log(errorMessage)
+                //console.log(errorMessage)
             }
         }
     }
 })
 
 const onCancel = async () => {
-    console.log("cancelled")
+    //console.log("cancelled")
     emit("cancelled")
 }
 </script>

@@ -189,8 +189,8 @@ Functions
 -------------------------------------------------------------------------------*/
 async function validateForm() {
     const {valid} = await validate()
-    console.dir(valid)
-    console.dir(errors)
+    //console.dir(valid)
+    //console.dir(errors)
     if (valid) {
         formValues.marketing_chk = marketing_chk.value
         formValues.ecommerce_chk = ecommerce_chk.value
@@ -200,9 +200,9 @@ async function validateForm() {
         formValues.personal_chk = personal_chk.value
         formValues.nonprofit_chk = nonprofit_chk.value
         formValues.enquiry = enquiry.value
-        console.log(formValues)
+        //console.log(formValues)
     } else {
-        console.log("New site failed")
+        //console.log("New site failed")
     }
     return {
         valid,

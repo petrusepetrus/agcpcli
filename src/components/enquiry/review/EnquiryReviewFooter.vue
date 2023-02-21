@@ -83,7 +83,7 @@ import {useRoute,useRouter} from "vue-router";
 /*-------------------------------------------------------------------------------*/
 import BaseButton from "../../ui/BaseButton.vue";
 import {useEnquiryStore} from "../../../stores/EnquiryStore.js";
-import generalUtilities from "../../../utils/GeneralUtilities.js";
+import {testIfPromise} from "../../../utils/GeneralUtilities.js";
 import BaseErrorMessage from "../../ui/BaseErrorMessage.vue";
 
 
@@ -129,11 +129,10 @@ if (enquiryStore.enquiry.user !== null) {
 /*===============================================================================*/
 const router = useRouter()
 const {sendInvitation,getEnquiry,deleteEnquiry} = useMiscService()
-const {testIfPromise} = generalUtilities()
 const {errorMessageHandler} = useErrorService
 
 const sendInvite = async () => {
-    console.log("sending invitation for " + enquiryStore.enquiry.email)
+    //console.log("sending invitation for " + enquiryStore.enquiry.email)
     try {
         await validateInvitation
     } catch (e) {
@@ -145,10 +144,10 @@ const sendInvite = async () => {
         let payload = {}
         payload.enquiry_id=enquiryStore.enquiry.id
         payload.email = enquiryStore.enquiry.email
-        console.log(payload)
+        //console.log(payload)
         await sendInvitation(payload)
         payload =enquiryStore.enquiry.id
-        console.log(payload)
+        //console.log(payload)
         let response=await getEnquiry(payload)
         enquiryStore.enquiry=response.data
         isSubmitting.value = false
@@ -162,19 +161,19 @@ const sendInvite = async () => {
              */
                 errorMessage.title = value.title
                 errorMessage.description = value.description
-                console.log(errorMessage)
+                //console.log(errorMessage)
                 //error.description=e
             })
         } else {
             errorMessage = await errorMessageHandler(e)
-            console.log(errorMessage)
+            //console.log(errorMessage)
         }
     }
 }
 const deleteCurrentEnquiry = async () => {
     isSubmitting.value = true
     errorMessage.title = null
-    console.log(enquiry.value.id)
+    //console.log(enquiry.value.id)
     try {
         let response = await deleteEnquiry(enquiry.value.id)
         await router.push({name: "enquiries"})

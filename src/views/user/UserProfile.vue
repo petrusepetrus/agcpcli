@@ -1,36 +1,41 @@
 <template>
-    <div>
+    <div class="bg-black min-h-screen">
         <Navbar></Navbar>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mx-auto mb-4 mt-4">
-                <BaseSpinner v-if="flgIsLoading"></BaseSpinner>
+                <BaseSpinner
+                      v-if="flgIsLoading"
+                      action="Loading - please wait"
+                      class="text-teal-300"
+                >
+                </BaseSpinner>
             </div>
             <div v-if="userFound" class="py-10">
                 <header>
                     <div class="max-w-7xl mx-auto mb-4 ">
-                        <h1 class="text-3xl font-bold leading-tight text-gray-900">Profile</h1>
+                        <h1 class="text-5xl block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">Profile</h1>
                     </div>
                 </header>
                 <main class="space-y-8 ">
-                    <div class="bg-white p-4 shadow overflow-hidden sm:rounded-lg">
+                    <div class="bg-black p-4 shadow shadow-gray-500 overflow-hidden sm:rounded-lg">
 
                         <PersonalInformation></PersonalInformation>
 
                     </div>
-                    <div v-if="!addingNewUser" class="bg-white p-4 shadow overflow-hidden sm:rounded-lg">
+                    <div v-if="!addingNewUser" class="bg-black p-4 shadow shadow-gray-500 overflow-hidden sm:rounded-lg">
 
                         <RolesList></RolesList>
 
                     </div>
-                    <div v-if="!addingNewUser" class="bg-white p-4 shadow overflow-hidden sm:rounded-lg">
+                    <div v-if="!addingNewUser" class="bg-black p-4 shadow shadow-gray-500 overflow-hidden sm:rounded-lg">
 
                         <AddressList></AddressList>
 
                     </div>
-                    <div v-if="!addingNewUser" class="bg-white p-4 shadow overflow-hidden sm:rounded-lg">
+                    <div v-if="!addingNewUser" class="bg-black p-4 shadow shadow-gray-500 overflow-hidden sm:rounded-lg">
                         <PhoneList></PhoneList>
                     </div>
-                    <div v-if="!addingNewUser" class="bg-white p-4 shadow overflow-hidden sm:rounded-lg">
+                    <div v-if="!addingNewUser" class="bg-black p-4 shadow shadow-gray-500 overflow-hidden sm:rounded-lg">
                         <NotificationCard></NotificationCard>
                     </div>
 
@@ -82,7 +87,7 @@ import BaseSpinner from "../../components/ui/BaseSpinner.vue";
 import {useUserStore} from "../../stores/UserStore.js";
 /* Services */
 import useAuthService from "../../services/useAuthService.js";
-import useUserService from "../../services/user/useUserService.js";
+import useUserService from "../../services/useUserService.js";
 import useErrorService from "../../services/useErrorService.js";
 import Navbar from "../../components/layout/Navbar.vue";
 /*
@@ -133,7 +138,7 @@ Mainline
 let userID = route.params.userID
 
 if (userID === 'new') {
-    console.log("adding user")
+    //console.log("adding user")
     addingNewUser.value = true
 } else {
     getUserToBeEdited(userID)
@@ -146,10 +151,10 @@ Functions
 async function getUserToBeEdited(userID) {
     flgIsLoading.value = true
     try {
-        console.log("searching for one")
+        //console.log("searching for one")
         let response = await getUser(userID)
         if (response.data) {
-            console.log("found one")
+            //console.log("found one")
 
             userFound.value = true
             const userStore = useUserStore()
@@ -172,24 +177,24 @@ async function getUserToBeEdited(userID) {
         userFound.value = false
         errorMessage.value = await errorMessageHandler(e)
         if (errorMessage.value.status === 401 || errorMessage.value.status === 419) {
-            console.log("401 or 409")
+            //console.log("401 or 409")
             try {
                 if (localStorage.getItem('authStore')) {
                     const returnedState = JSON.parse(localStorage.getItem('authStore'))
-                    console.log(returnedState.authenticated)
-                    console.log(returnedState.verified)
-                    console.log(returnedState.user)
+                    //console.log(returnedState.authenticated)
+                    //console.log(returnedState.verified)
+                    //console.log(returnedState.user)
                 }
                 localStorage.removeItem('authStore')
                 if (localStorage.getItem('authStore')) {
                     const returnedState = JSON.parse(localStorage.getItem('authStore'))
-                    console.log(returnedState.authenticated)
-                    console.log(returnedState.verified)
-                    console.log(returnedState.user)
+                    //console.log(returnedState.authenticated)
+                    //console.log(returnedState.verified)
+                    //console.log(returnedState.user)
                 }
                 await logout
             } catch (e) {
-                console.log(e)
+                //console.log(e)
             }
 
             await router.push({name: "login"})

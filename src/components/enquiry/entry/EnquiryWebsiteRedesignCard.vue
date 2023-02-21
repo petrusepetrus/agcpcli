@@ -46,7 +46,7 @@
         <p class="text-sm text-gray-300">
             (Select all that apply)
         </p>
-        <div class="grid md:grid-cols-2 sm:grid-cols-1">
+        <div class="grid md:grid-cols-4 sm:grid-cols-2">
             <div class="mt-4 mx-2 col-span-1">
                 <BaseCheckbox
                       v-model="marketing_chk"
@@ -73,8 +73,6 @@
                 >
                 </BaseCheckbox>
             </div>
-        </div>
-        <div class="grid md:grid-cols-2 sm:grid-cols-1">
             <div class="mt-4 mx-2 col-span-1">
                 <BaseCheckbox
                       v-model="blog_chk"
@@ -88,21 +86,6 @@
                 >
                 </BaseCheckbox>
             </div>
-            <div class="mt-4 mx-2 col-span-1">
-                <BaseCheckbox
-                      v-model="portfolio_chk"
-                      :label="'Portfolio'"
-                      :label-description="'Consolidating and displaying examples of your creative work.'"
-                      :model-value="portfolio_chk"
-                      :name="'portfolio_chk'"
-                      :labelClass="'text-md text-gray-300'"
-                      :labelDescriptionClass="'text-gray-400'"
-                      :inputClass="'focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded'"
-                >
-                </BaseCheckbox>
-            </div>
-        </div>
-        <div class="grid md:grid-cols-2 sm:grid-cols-1">
             <div class="mt-4  mx-2 col-span-1">
                 <BaseCheckbox
                       v-model="membership_chk"
@@ -110,6 +93,21 @@
                       :label-description="'Registered users can access exclusive content as part of building customer loyalty.'"
                       :model-value="membership_chk"
                       :name="'membership_chk'"
+                      :labelClass="'text-md text-gray-300'"
+                      :labelDescriptionClass="'text-gray-400'"
+                      :inputClass="'focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded'"
+                >
+                </BaseCheckbox>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-4 sm:grid-cols-2">
+            <div class="mt-4 mx-2 col-span-1">
+                <BaseCheckbox
+                      v-model="portfolio_chk"
+                      :label="'Portfolio'"
+                      :label-description="'Consolidating and displaying examples of your creative work.'"
+                      :model-value="portfolio_chk"
+                      :name="'portfolio_chk'"
                       :labelClass="'text-md text-gray-300'"
                       :labelDescriptionClass="'text-gray-400'"
                       :inputClass="'focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded'"
@@ -129,8 +127,6 @@
                 >
                 </BaseCheckbox>
             </div>
-        </div>
-        <div class="grid md:grid-cols-2 sm:grid-cols-1">
             <div class="mt-4 mx-2 col-span-1">
                 <BaseCheckbox
                       v-model="nonprofit_chk"
@@ -228,8 +224,8 @@ Functions
 -------------------------------------------------------------------------------*/
 async function validateForm() {
     const {valid} = await validate()
-    console.dir(valid)
-    console.dir(errors)
+    //console.dir(valid)
+    //console.dir(errors)
     if (valid) {
         formValues.business_name = business_name.value
         formValues.business_url = business_url.value
@@ -241,9 +237,9 @@ async function validateForm() {
         formValues.personal_chk = personal_chk.value
         formValues.nonprofit_chk = nonprofit_chk.value
         formValues.enquiry = enquiry.value
-        console.log(formValues)
+        //console.log(formValues)
     } else {
-        console.log("New site failed")
+        //console.log("New site failed")
     }
     return {
         valid,

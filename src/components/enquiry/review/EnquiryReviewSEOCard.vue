@@ -28,7 +28,7 @@
                     <BaseCheckbox
                           v-model="enquiry.google_chk"
                           :label="'Google Business'"
-                          :model-value="enquiry.google_chk"
+                          :model-value="Boolean(enquiry.google_chk)"
                           :name="'google_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"
@@ -41,7 +41,7 @@
                     <BaseCheckbox
                           v-model="enquiry.facebook_chk"
                           :label="'Facebook'"
-                          :model-value="enquiry.facebook_chk"
+                          :model-value="Boolean(enquiry.facebook_chk)"
                           :name="'facebook_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"
@@ -54,7 +54,7 @@
                     <BaseCheckbox
                           v-model="enquiry.you_tube_chk"
                           :label="'YouTube'"
-                          :model-value="enquiry.you_tube_chk"
+                          :model-value="Boolean(enquiry.you_tube_chk)"
                           :name="'you_tube_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"
@@ -67,7 +67,7 @@
                     <BaseCheckbox
                           v-model="enquiry.twitter_chk"
                           :label="'Twitter'"
-                          :model-value="enquiry.twitter_chk"
+                          :model-value="Boolean(enquiry.twitter_chk)"
                           :name="'twitter_chk'"
                           :labelClass="'text-md text-gray-300'"
                           :labelDescriptionClass="'text-gray-400'"
@@ -82,7 +82,7 @@
                     <BaseCheckbox
                           v-model="enquiry.linked_in_chk"
                           :label="'LinkedIn'"
-                          :model-value="enquiry.linked_in_chk"
+                          :model-value="Boolean(enquiry.linked_in_chk)"
                           :name="'linked_in_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"
@@ -95,7 +95,7 @@
                     <BaseCheckbox
                           v-model="enquiry.tik_tok_chk"
                           :label="'TikTok'"
-                          :model-value="enquiry.tik_tok_chk"
+                          :model-value="Boolean(enquiry.tik_tok_chk)"
                           :name="'tik_tok_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"
@@ -108,7 +108,7 @@
                     <BaseCheckbox
                           v-model="enquiry.snapchat_chk"
                           :label="'Snapchat'"
-                          :model-value="enquiry.snapchat_chk"
+                          :model-value="Boolean(enquiry.snapchat_chk)"
                           :name="'snapchat_chk'"
                           :label-class="'text-md text-gray-300'"
                           :label-description-class="'text-gray-400'"

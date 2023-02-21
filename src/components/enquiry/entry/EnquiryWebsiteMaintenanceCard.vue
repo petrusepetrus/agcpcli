@@ -44,7 +44,7 @@
             What type of maintenance offering do you think would be of most interest to you?
         </p>
 
-        <div class="grid md:grid-cols-2 sm:grid-cols-1">
+        <div class="grid md:grid-cols-4 sm:grid-cols-2">
             <div class="mt-4 mx-2 col-span-1">
                 <BaseCheckbox
                       v-model="bare_bones_chk"
@@ -154,8 +154,8 @@ Functions
 async function validateForm() {
 
     const {valid} = await validate()
-    console.dir(valid)
-    console.dir(errors)
+    //console.dir(valid)
+    //console.dir(errors)
     if (valid) {
         formValues.bare_bones_chk = bare_bones_chk.value
         formValues.maintenance_plus_chk = maintenance_plus_chk.value
@@ -163,7 +163,7 @@ async function validateForm() {
         formValues.business_url = business_url.value
         formValues.enquiry = enquiry.value
     }else{
-        console.log("Maintenance failed")
+        //console.log("Maintenance failed")
     }
     return {
         valid,

@@ -28,7 +28,7 @@
                             <div v-if="!item.authenticated || (item.authenticated && checkRoles(item.roles))"
                                  class="hidden space-x-8 md:ml-10 md:flex block rounded-md px-3 py-2 text-base font-medium text-gray-900 ">
                                 <router-link
-                                      :active-class="'border-teal-300 text-gray-900 inline-flex items-center border-b-2 text-sm font-medium'"
+                                      :active-class="'border-teal-300 text-teal-500 inline-flex items-center border-b-2 text-sm font-medium'"
                                       :class="'text-base font-medium text-white hover:text-gray-300'"
                                       :to="item.href"
                                 >
@@ -55,7 +55,7 @@
                             <span class="sr-only">Open user menu</span>
                             <img
                                   class="h-8 w-8 rounded-full border-gray-400 border-solid border-2 hover:border-teal-600"
-                                  src="/src/assets/images/PeterStone2320x2320.png"
+                                  src="/src/assets/images/peter 1024x1024.jpg"
                                   :alt="user.name"
                             />
                         </MenuButton>
@@ -134,7 +134,7 @@
                          class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 "
                     >
                         <router-link
-                              :active-class="'border-teal-300 text-gray-900 inline-flex items-center  px-1 pt-1 border-b-2 text-sm font-medium'"
+                              :active-class="'border-teal-300 text-gray-200 inline-flex items-center  px-1 pt-1 border-b-2 text-sm font-medium'"
                               :class="'border-transparent text-gray-500  ' +
                            'hover:border-gray-300 hover:text-gray-700 hover:bg-yellow-400' +
                             'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'"
@@ -282,6 +282,16 @@ const navigation = [
 
         ]
     },
+    {
+        name: 'Users',
+        href: '/users',
+        authenticated: true,
+        roles: [
+            'super admin',
+            'admin'
+
+        ]
+    },
 
 ]
 
@@ -296,7 +306,7 @@ const logUserOut = async () => {
         await logout()
         await router.push({name: 'home'})
     } catch (e) {
-        console.log(e)
+        //console.log(e)
     }
 
 }
@@ -308,23 +318,23 @@ const logUserOut = async () => {
 */
 const checkRoles = (permittedRoles) => {
 
-    console.log(userRoles.value)
+    //console.log(userRoles.value)
     for (let x = 0; x < permittedRoles.length; x++) {
-        console.log(permittedRoles)
-        console.log(permittedRoles[x])
+        //console.log(permittedRoles)
+        //console.log(permittedRoles[x])
         let permittedRoleName = permittedRoles[x]
-        console.log(permittedRoleName)
+        //console.log(permittedRoleName)
         for (let i = 0; i < userRoles.value.length; i++) {
-            console.log(userRoles.value[i].name + " " + permittedRoleName)
+            //console.log(userRoles.value[i].name + " " + permittedRoleName)
             if (userRoles.value[i].name === permittedRoleName || permittedRoleName === "Public") {
-                console.log("found it")
+                //console.log("found it")
                 return true
             } else {
-                console.log("missed it")
+                //console.log("missed it")
             }
         }
     }
-    console.log("nope")
+    //console.log("nope")
     return false
 }
 </script>

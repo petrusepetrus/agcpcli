@@ -212,16 +212,16 @@ const {value: password_confirmation} = useField('password_confirmation', {valida
 /*===============================================================================*/
 onBeforeMount(async () => {
 
-    console.log(route.query)
+    //console.log(route.query)
 
-    console.log(invitationToken)
+    //console.log(invitationToken)
     if (!invitationToken) {
         errorMessage.value.title = "Invalid Invitation"
         errorMessage.value.description = "The invitation credentials are invalid. Please request another invitation."
     } else {
         try {
             let response = await retrieveInvitation(invitationToken)
-            console.log(response)
+            //console.log(response)
             //invitation_email.value=response.data.email
             let expireDate = new Date(response.data.expires_at)
             let currentDate = new Date()

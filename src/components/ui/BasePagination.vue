@@ -157,7 +157,7 @@ const handleClick = (page) => {
             newPage = parseInt(page)
         }
     }
-    console.log("new page detected " + newPage)
+    //console.log("new page detected " + newPage)
     emit('newPage', newPage)
 }
 </script>

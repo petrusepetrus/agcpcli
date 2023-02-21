@@ -30,11 +30,11 @@ export default function useAuthService() {
             /*
             Otherwise, all good. Return the received response from Axios.
              */
-            console.log(response)
+            //console.log(response)
             return response;
         },
         function (error) {
-            console.log(error)
+            //console.log(error)
             let errorMessage = errorHandler(error)
             return Promise.reject(errorMessage)
         }
@@ -55,7 +55,7 @@ export default function useAuthService() {
     logout
      */
     const logout = () => {
-        console.log("in logout")
+        //console.log("in logout")
         const authStore = useAuthStore()
         const {user, verified, authenticated, userRoles, userPermissions} = storeToRefs(authStore)
         user.value = {}
@@ -70,7 +70,7 @@ export default function useAuthService() {
     register new user
      */
     const registerUser = async (payload) => {
-        console.log(payload)
+        //console.log(payload)
         await authClient.get('/sanctum/csrf-cookie')
         return authClient.post('/register', payload)
     }

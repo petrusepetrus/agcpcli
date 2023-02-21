@@ -10,7 +10,8 @@ const useUserStore = defineStore('UserStore', {
             userAddresses: {},
             userPhones:{},
             userTypes:{},
-            notificationPreferences:{}
+            notificationPreferences:{},
+            userNotificationTopics:{}
         }
     },
     getters: {

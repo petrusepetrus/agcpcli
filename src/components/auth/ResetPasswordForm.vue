@@ -169,7 +169,7 @@ const onSubmit = handleSubmit(async form => {
         setTimeout(() => {  router.push({name: 'login'}) }, 5000);
         flgIsSubmitting.value=false
     } catch (e) {
-        console.log(e)
+        //console.log(e)
         errorMessage.value = await errorMessageHandler(e)
         flgIsSubmitting.value=false
     }

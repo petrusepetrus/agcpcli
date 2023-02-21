@@ -19,7 +19,6 @@
                             <EnquiryReviewNewRedesignWebsiteCard>
                             </EnquiryReviewNewRedesignWebsiteCard>
                         </div>
-
                         <div
                               v-if="enquiryStore.enquiry.enquiry_type.enquiry_type==='Website Maintenance'"
                               class="mt-4">
@@ -64,12 +63,15 @@
                             >
                             </EnquiryReviewFooter>
                         </div>
-
                     </div>
                 </div>
                 <div>
+
                     <BaseSpinner
-                          v-if="flgIsSubmitting">
+                          v-if="flgIsSubmitting"
+                          action="Loading - please wait"
+                          class="text-teal-300"
+                    >
                     </BaseSpinner>
                     <BaseErrorMessage
                           v-if="error.title"
@@ -85,7 +87,6 @@
             </div>
         </div>
     </div>
-
 </template>
 <script setup>
 /* Overview
@@ -109,20 +110,22 @@ import BaseSpinner from "../../components/ui/BaseSpinner.vue";
 import BaseErrorMessage from "../../components/ui/BaseErrorMessage.vue";
 import BaseInformationMessage from "../../components/ui/BaseInformationMessage.vue";
 import EnquiryReviewHeader from "../../components/enquiry/review/EnquiryReviewHeader.vue";
-import EnquiryReviewNewRedesignWebsiteCard from "../../components/enquiry/review/EnquiryReviewNewRedesignWebsiteCard.vue";
+import EnquiryReviewNewRedesignWebsiteCard
+    from "../../components/enquiry/review/EnquiryReviewNewRedesignWebsiteCard.vue";
 import EnquiryReviewFooter from "../../components/enquiry/review/EnquiryReviewFooter.vue"
 import EnquiryReviewSEOCard from "../../components/enquiry/review/EnquiryReviewSEOCard.vue";
 import EnquiryReviewSomethingElseCard from "../../components/enquiry/review/EnquiryReviewSomethingElseCard.vue";
 import EnquiryReviewCommentList from "../../components/enquiry/review/EnquiryReviewCommentList.vue";
 import EnquiryReviewCommentForm from "../../components/enquiry/review/EnquiryReviewCommentForm.vue";
-import EnquiryReviewWebsiteMaintenanceCard from "../../components/enquiry/review/EnquiryReviewWebsiteMaintenanceCard.vue";
+import EnquiryReviewWebsiteMaintenanceCard
+    from "../../components/enquiry/review/EnquiryReviewWebsiteMaintenanceCard.vue";
 
 import Sidebar from "../../components/layout/Sidebar.vue";
 /*-------------------------------------------------------------------------------*/
 /* Services and Utilities
 /*-------------------------------------------------------------------------------*/
 import useMiscService from "../../services/misc/useMiscService.js";
-import generalUtilities from "../../utils/GeneralUtilities.js";
+import {testIfPromise} from "../../utils/GeneralUtilities.js";
 /*-------------------------------------------------------------------------------*/
 /* Stores
 /*-------------------------------------------------------------------------------*/
@@ -157,7 +160,7 @@ enquiryID.value = route.params.enquiryID
 /*===============================================================================*/
 onBeforeMount(async () => {
     error.title = ""
-    console.log(enquiryID.value)
+    //console.log(enquiryID.value)
     await loadEnquiryStore(enquiryID.value)
 })
 onBeforeUnmount(async () => {
@@ -187,7 +190,6 @@ onBeforeUnmount(async () => {
 /* Functions
 /*===============================================================================*/
 const {getEnquiry, setEnquiryStatus, getEnquiryComments} = useMiscService()
-const {testIfPromise} = generalUtilities()
 
 async function loadEnquiryStore(enquiryID) {
     /*
@@ -202,15 +204,16 @@ async function loadEnquiryStore(enquiryID) {
                 object containing the constructed query based on the user
                 filters selected
     */
+    flgIsSubmitting.value = true
     try {
-        flgIsSubmitting.value = true
+
         let response = await getEnquiry(enquiryID)
         if (response.data) {
             enquiryStore.enquiry = response.data
             enquiryFound.value = true
             if (enquiryStore.enquiry.user !== null) {
                 userFound.value = true
-                console.log(userFound)
+                //console.log(userFound)
             }
         } else {
             error.title = "Enquiry not found"
@@ -236,23 +239,23 @@ async function loadEnquiryStore(enquiryID) {
 }
 
 const changeComment = async (enquiryEditMode, enquiryCommentID) => {
-    console.log("change a comment " + enquiryEditMode + " " + enquiryCommentID)
+    //console.log("change a comment " + enquiryEditMode + " " + enquiryCommentID)
     flgChangingComment.value = true
     commentID.value = enquiryCommentID
     editMode.value = enquiryEditMode
 }
 const addComment = async (enquiryEditMode, enquiryCommentID) => {
-    console.log("add a comment " + enquiryEditMode + " " + enquiryCommentID)
+    //console.log("add a comment " + enquiryEditMode + " " + enquiryCommentID)
     flgAddingComment.value = true
     commentID.value = 0
     editMode.value = enquiryEditMode
 }
 const commentsChanged = async () => {
-    console.log("updated")
+    //console.log("updated")
     flgAddingComment.value = false
     flgChangingComment.value = false
     let response = await getEnquiryComments(enquiryStore.enquiry.id)
-    console.log(response)
+    //console.log(response)
     enquiryStore.enquiry.enquiry_comments = response
 }
 

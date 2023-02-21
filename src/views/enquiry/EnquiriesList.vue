@@ -14,9 +14,9 @@
                         </div>
                     </div>
                     <div class="bg-black grid lg:grid-cols-3 md:grid-cols-1 ">
-                        <div class="bg-black max-w-lg  lg:max-w-xs shrink bg-white shadow sm:rounded-lg p-2 col-span-1 ">
+                        <div class="bg-black max-w-lg  lg:max-w-xs shrink shadow sm:rounded-lg p-2 col-span-1 ">
                             <h2 class="text-lg leading-6 font-medium text-teal-300">Filter on name</h2>
-                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-300">
+                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-400">
                                 <p>Enter any consecutive sequence of letters to search the name for</p>
                             </div>
                             <label for="name-query" class="sr-only">Search</label>
@@ -31,13 +31,12 @@
                                       :input-class="'block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-teal-500 focus:border-teal-500 sm:text-sm'"
                                       placeholder="Search name"
                                       type="search"
-                                      @keyup="getEnquiriesList"
                                 />
                             </div>
                         </div>
                         <div class="bg-black max-w-lg  lg:max-w-xs shrink shadow sm:rounded-lg p-2 col-span-1">
                             <h2 class="text-lg leading-6 font-medium text-teal-300">Filter on enquiry type</h2>
-                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-300">
+                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-400">
                                 <p>Select one or more enquiry types to search for or leave blank for all</p>
                             </div>
                             <div class="max-w-lg w-full lg:max-w-xs">
@@ -58,7 +57,7 @@
                         </div>
                         <div class="bg-black max-w-lg  lg:max-w-xs shrink bg-white shadow sm:rounded-lg p-2 col-span-1">
                             <h2 class="text-lg leading-6 font-medium text-teal-300">Filter on enquiry status</h2>
-                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-300">
+                            <div class="mt-2 mb-2 max-w-xl text-sm text-gray-400">
                                 <p>Select one or more enquiry statuses you are interested in or leave blank for
                                     all</p>
                             </div>
@@ -94,7 +93,7 @@
                             </th>
                             <th
                                   scope="col"
-                                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-400 lg:table-cell">
+                                  class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-400 sm:table-cell">
                                 <div>
                                     Phone
                                 </div>
@@ -134,12 +133,12 @@
                                     {{ enquiry.id }}
                                 </div>
                             </td>
-                            <td class="px-3 py-4 text-sm text-gray-300 sm:table-cell">
+                            <td class="hidden px-3 py-4 text-sm text-gray-300 sm:table-cell">
                                 <div class="px-3">
-                                    <a href="tel:{{ enquiry.phone_number }}">{{ enquiry.phone_number }}</a>
+                                    <a :href="`tel: ${enquiry.phone_number }`">{{ enquiry.phone_number }}</a>
                                 </div>
                                 <div class="px-3 text-sm text-gray-300  ">
-                                    {{ enquiry.email }}
+                                    <a :href="`mailto: ${enquiry.email}`">{{ enquiry.email }}</a>
                                 </div>
                             </td>
                             <td class="px-3 py-4 text-sm text-gray-300 sm:table-cell">
@@ -196,7 +195,10 @@
                     </BasePagination>
                 </div>
                 <BaseSpinner
-                      v-if="flgIsSubmitting">
+                      v-if="flgIsLoading || flgIsDeleting"
+                      :action="flgIsLoading ?'Loading - please wait' : 'Deleting - please wait'"
+                      class="text-teal-300"
+                >
                 </BaseSpinner>
                 <BaseErrorMessage
                       v-if="error.title"
@@ -228,6 +230,7 @@ import {ref, reactive, watch, onBeforeMount} from "vue";
 /*-------------------------------------------------------------------------------*/
 /* Router
 /*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
 /* Components
 /*-------------------------------------------------------------------------------*/
 import Sidebar from "../../components/layout/Sidebar.vue";
@@ -243,7 +246,7 @@ import BaseInput from "../../components/ui/BaseInput.vue";
 /* Services and Utilities
 /*-------------------------------------------------------------------------------*/
 import useMiscService from "../../services/misc/useMiscService.js";
-import generalUtilities from "../../utils/GeneralUtilities.js"
+import {testIfPromise} from "../../utils/GeneralUtilities.js"
 
 /*-------------------------------------------------------------------------------*/
 /* Stores
@@ -258,6 +261,7 @@ const props = defineProps({
 /*===============================================================================*/
 /* Emits
 /*===============================================================================*/
+/*===============================================================================*/
 /* Variable Declaration and Initialisation
 /*===============================================================================*/
 let enquiriesList = ref({})
@@ -268,7 +272,8 @@ let enquiryStatuses = ref([])
 let enquiryTypeSelected = ref([])
 let enquiryStatusSelected = ref([])
 let enquiriesFound = ref(false)
-let flgIsSubmitting = ref(false)
+let flgIsLoading=ref(false)
+let flgIsDeleting = ref(false)
 let error = reactive({})
 let warning = reactive({})
 let queryParams = reactive({
@@ -280,56 +285,62 @@ let queryParams = reactive({
 })
 
 const {getEnquiries, getEnquiryTypes, getEnquiryStatuses, deleteEnquiry} = useMiscService()
-const {testIfPromise} = generalUtilities()
+
 /*===============================================================================*/
 /* Lifecycle Hooks
 /*===============================================================================*/
 onBeforeMount(async () => {
-    /*
+          /*
     retrieve the enquiry types and statuses for the search bar
      */
-    await loadEnquiryTypes()
-    await loadEnquiryStatuses()
-    /*
+          await loadEnquiryTypes()
+          await loadEnquiryStatuses()
+          /*
     checkout the page number we are referring to
      */
-    let stringToBeSearched = document.location.search
-    let searchString = "page="
-    queryParams.pageNumber = stringToBeSearched.substring(stringToBeSearched.search(searchString) + searchString.length, stringToBeSearched.length)
-    /*
+          let stringToBeSearched = document.location.search
+          let searchString = "page="
+          queryParams.pageNumber = stringToBeSearched.substring(stringToBeSearched.search(searchString) + searchString.length, stringToBeSearched.length)
+          /*
     get the enquiries corresponding to that page
      */
-    await getEnquiriesList()
-    /*
-    set up the page to be displayed
-     */
-    if (paginationData.path) {
-        try {
-            /*
-            change the browser URL to reflect page number
-             */
-            await changePageURL(paginationData.current_page)
-        } catch (e) {
-            if (testIfPromise(e)) {
-                e.then((value) => {
-                    /*
-                The error handler throws a promise.reject so we need to resolve the promise
-                to access the error information
+          await getEnquiriesList()
+          if (enquiriesFound.value === false) {
+              warning.title = "No enquiries found"
+              warning.description = "No enquiries match your chosen criteria."
+          } else {
+              /*
+        set up the page to be displayed
+         */
+              if (paginationData.path) {
+                  try {
+                      /*
+                change the browser URL to reflect page number
                  */
-                    error.title = value.title
-                    error.description = value.description
-                    //error.description=e
-                })
-            } else {
-                error.title = e
-            }
-        }
-    }
-    /*
-    listen for back or forward button clicks in browser
-     */
-    window.addEventListener('popstate', popstateEventAction);
-})
+                      await changePageURL(paginationData.current_page)
+                  } catch (e) {
+                      if (testIfPromise(e)) {
+                          e.then((value) => {
+                              /*
+                    The error handler throws a promise.reject so we need to resolve the promise
+                    to access the error information
+                     */
+                              error.title = value.title
+                              error.description = value.description
+                              //error.description=e
+                          })
+                      } else {
+                          error.title = e
+                      }
+                  }
+              }
+              /*
+        listen for back or forward button clicks in browser
+         */
+              window.addEventListener('popstate', popstateEventAction);
+          }
+      }
+)
 
 /*===============================================================================*/
 /* Watchers
@@ -416,13 +427,12 @@ const getEnquiriesList = async () => {
                 object containing the constructed query based on the user
                 filters selected
     */
-    flgIsSubmitting.value = true
+    flgIsLoading.value = true
     enquiriesFound.value = false
     try {
         let response = await getEnquiries(queryParams)
         if (response.data.length === 0) {
-            warning.title = "No enquiries found"
-            warning.description = "No enquiries match your chosen criteria."
+            enquiriesFound.value = false
         } else {
             enquiriesFound.value = true
             warning.title = ""
@@ -453,15 +463,23 @@ const getEnquiriesList = async () => {
             error.title = e
         }
     }
-    flgIsSubmitting.value = false
+    flgIsLoading.value = false
 }
 /*-------------------------------------------------------------------------------*/
 const deleteEnquiryFromList = async (enquiryID) => {
-    console.log("deleteing " + enquiryID)
-    flgIsSubmitting.value = true
+    //console.log("deleteing " + enquiryID)
+    flgIsDeleting.value = true
     try {
         let response = await deleteEnquiry(enquiryID)
         getEnquiriesList()
+        if (enquiriesFound.value !== true && queryParams.pageNumber > 1) {
+            queryParams.pageNumber = queryParams.pageNumber - 1
+            getEnquiriesList()
+            changePageURL(queryParams.pageNumber)
+        } else {
+            warning.title = "No enquiries found"
+            warning.description = "No enquiries match your chosen criteria."
+        }
     } catch (e) {
         if (testIfPromise(e)) {
             e.then((value) => {
@@ -477,7 +495,7 @@ const deleteEnquiryFromList = async (enquiryID) => {
             error.title = e
         }
     }
-    flgIsSubmitting.value = false
+    flgIsDeleting.value = false
 }
 /*-------------------------------------------------------------------------------*/
 const pageChange = async (newPage) => {
@@ -512,7 +530,7 @@ const pageChange = async (newPage) => {
         }
     }
 }
-
+/*-------------------------------------------------------------------------------*/
 const changePageURL = (newPage) => {
     const url = new URL(window.location);
     url.searchParams.set('page', newPage);
@@ -583,7 +601,6 @@ async function loadEnquiryTypes() {
              */
             error.title = value.title
             error.description = value.description
-            process.exit()
             //error.description=e
         })
     }
@@ -608,7 +625,7 @@ const loadEnquiryStatuses = async () => {
              */
             error.title = value.title
             error.description = value.description
-            process.exit()
+
             //error.description=e
         })
     }

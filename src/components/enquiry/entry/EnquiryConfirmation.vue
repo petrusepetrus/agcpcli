@@ -5,14 +5,16 @@
             Congratulations
         </h2>
         <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-            We have successfully received your message and we will contact you shortly.
+            We have successfully received your enquiry and have sent you a confirmation email.
         </p>
-
+        <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl mt-2">
+            We will be in touch shortly.
+        </p>
     </div>
 </template>
 
 <script setup>
-
+window.scrollTo({ top: 0, behavior: "smooth" });
 </script>
 
 <style scoped>

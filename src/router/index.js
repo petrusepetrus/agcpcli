@@ -64,14 +64,14 @@ const routes = [
 
             if (authenticated.value === true) {
                 if ((Number(authStore.user.id) === Number(to.params.userID)) || (hasRole(['admin', 'super admin']))) {
-                    console.log("valid")
+                    //console.log("valid")
                     next()
                 } else {
-                    console.log("invalid")
+                    //console.log("invalid")
                     action401(to,from,next)
                 }
             } else {
-                console.log("invalid")
+                //console.log("invalid")
                 action401(to,from,next)
             }
         },
@@ -122,7 +122,6 @@ const routes = [
         component: () => import("../components/layout/HttpError.vue"),
         props: true
     },
-
     {
         path: '/:pathMatch(.*)*',
         name: "error",
@@ -145,7 +144,7 @@ const router = createRouter({
         if (savedPosition) {
             return savedPosition;
         } else {
-            return {x: 0, y: 0};
+            return {top: 0};
         }
     },
 })
@@ -154,21 +153,21 @@ function authenticationGuard(to, from, next) {
     const authStore = useAuthStore()
     const {authenticated} = storeToRefs(authStore)
     if (authenticated.value === true) {
-        console.log("authenticated - heading for " + to.fullpath)
-        console.log(to)
+        //console.log("authenticated - heading for " + to.fullPath)
+        //console.log(to)
         next()
     } else {
-        console.log("routing to 401")
+        //console.log("routing to 401")
         action401(to,from,next)
     }
 }
 
 function adminGuard(to, from, next) {
     if (hasRole(['admin', 'super admin'])) {
-        console.log("admin or super admin - heading for " + to.fullpath)
+        //console.log("admin or super admin - heading for " + to.fullPath)
         next()
     } else {
-        console.log("failed admin or super admin test")
+        //console.log("failed admin or super admin test")
         action401(to,from,next)
     }
 }

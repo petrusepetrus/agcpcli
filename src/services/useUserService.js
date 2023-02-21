@@ -1,5 +1,5 @@
 import axios from "axios";
-import errorHandler from "../api/apiErrorHandler.js";
+import errorHandler from "./api/apiErrorHandler.js";
 
 export default function useUserService() {
     /*
@@ -21,6 +21,7 @@ export default function useUserService() {
             return response;
         },
         function (error) {
+            //console.log(error)
             let errorMessage=errorHandler(error)
             return Promise.reject (errorMessage)
         }
@@ -40,6 +41,8 @@ export default function useUserService() {
          let response= await apiClient.get('/users/?page=' + payload.pageNumber,{
             params:payload
         })
+        //console.log("done getUsers")
+        //console.log(response.data)
         return response.data
     }
     /*
@@ -98,7 +101,7 @@ export default function useUserService() {
 
     const getUserPhones = async(payload)=>{
         let response=await apiClient.get('/user-phones/' + payload + '/')
-        console.log(response.data)
+        //console.log(response.data)
         return response.data
     }
 
@@ -137,11 +140,22 @@ Notification Preferences
         return response.data
     }
     const createUserNotificationPreference = async (payload, userID) => {
+        //console.log(payload)
         let response=await apiClient.post('/create-notification-preference/user/'+ userID, payload)
         return response.data
     }
     const updateUserNotificationPreference=async(payload, userID)=>{
+        //console.log(payload)
         let response=await apiClient.post('/update-notification-preference/user/'+ userID, payload)
+        return response.data
+    }
+    const getUserNotificationTopics=async(userID)=>{
+        let response=await apiClient.get('/get-notification-topics/user/'+ userID)
+        //console.log(response)
+        return response.data
+    }
+    const getNotificationTopics=async()=>{
+        let response=await apiClient.get('/get-notification-topics')
         return response.data
     }
 
@@ -169,6 +183,8 @@ Notification Preferences
         getUserNotificationPreference,
         createUserNotificationPreference,
         updateUserNotificationPreference,
+        getUserNotificationTopics,
+        getNotificationTopics,
         checkUserExists
     }
 }

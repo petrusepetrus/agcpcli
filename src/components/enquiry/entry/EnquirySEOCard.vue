@@ -52,7 +52,7 @@
                 <BaseCheckbox
                       v-model="google_chk"
                       :label="'Google Business'"
-                      :model-value="google_chk"
+                      :model-value="Boolean(google_chk)"
                       :name="'google_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -64,7 +64,7 @@
                 <BaseCheckbox
                       v-model="facebook_chk"
                       :label="'Facebook'"
-                      :model-value="facebook_chk"
+                      :model-value="Boolean(facebook_chk)"
                       :name="'facebook_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -76,7 +76,7 @@
                 <BaseCheckbox
                       v-model="you_tube_chk"
                       :label="'YouTube'"
-                      :model-value="you_tube_chk"
+                      :model-value="Boolean(you_tube_chk)"
                       :name="'you_tube_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -88,7 +88,7 @@
                 <BaseCheckbox
                       v-model="twitter_chk"
                       :label="'Twitter'"
-                      :model-value="twitter_chk"
+                      :model-value="Boolean(twitter_chk)"
                       :name="'twitter_chk'"
                       :labelClass="'text-md text-gray-300'"
                       :labelDescriptionClass="'text-gray-400'"
@@ -102,7 +102,7 @@
                 <BaseCheckbox
                       v-model="linked_in_chk"
                       :label="'LinkedIn'"
-                      :model-value="linked_in_chk"
+                      :model-value="Boolean(linked_in_chk)"
                       :name="'linked_in_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -126,7 +126,7 @@
                 <BaseCheckbox
                       v-model="snapchat_chk"
                       :label="'Snapchat'"
-                      :model-value="snapchat_chk"
+                      :model-value="Boolean(snapchat_chk)"
                       :name="'snapchat_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -138,7 +138,7 @@
                 <BaseCheckbox
                       v-model="other_chk"
                       :label="'Other'"
-                      :model-value="other_chk"
+                      :model-value="Boolean(other_chk)"
                       :name="'other_chk'"
                       :label-class="'text-md text-gray-300'"
                       :label-description-class="'text-gray-400'"
@@ -204,9 +204,9 @@ import BaseCheckbox from "../../ui/BaseCheckbox.vue";
 import BaseInput from "../../ui/BaseInput.vue";
 /* Validation */
 import {useField, useForm} from 'vee-validate'
-import {boolean, object, string} from 'yup'
+import {object, string} from 'yup'
 /* Services */
-import useMiscService from "../../../services/misc/useMiscService.js";
+
 /*
 -------------------------------------------------------------------------------
 Variable definitions
@@ -219,7 +219,6 @@ const enquiryCharLimit = ref(512)
 
 /* vee-validate schema */
 const validationSchema = object({
-    isOther:boolean(),
     business_name: string().required('Please enter the business or organisation name'),
     business_url: string().required('Please enter the business or organisation URL'),
     enquiry: string().required('Please enter your enquiry'),
@@ -266,10 +265,10 @@ Functions
 async function validateForm() {
 
     const {valid} = await validate()
-    console.dir(valid)
-    console.dir(errors)
+    //console.dir(valid)
+    //console.dir(errors)
     if (valid) {
-        console.log("yes")
+        //console.log("yes")
 
         formValues.business_name = business_name.value
         formValues.business_url = business_url.value
@@ -285,7 +284,7 @@ async function validateForm() {
         formValues.enquiry = enquiry.value
 
     } else {
-        console.log("SEO failed")
+        //console.log("SEO failed")
     }
     return {
         valid,

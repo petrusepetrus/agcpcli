@@ -1,96 +1,10 @@
 <template>
     <footer class="bg-gray-50" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
-        <div class="mx-auto max-w-md px-4 pt-12 sm:max-w-7xl sm:px-6 lg:px-8 lg:pt-16">
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div class="space-y-8 xl:col-span-1">
-                    <div class="text-base text-gray-500">
-                        <span>
-                             <span class="sr-only">Agapanthus Consulting</span>
-                            <img class="h-12 w-auto w-12 rounded-full border-cyan-600 border-solid border-1 "
-                                 src="/src/assets/images/agcplogotrsp150x150.png"
-                                 alt="Agapanthus Consulting Logo"/>
-                        Agapanthus Consulting
-                        </span>
-                        Making websites better by design.
-                    </div>
-
-                    <div class="flex space-x-6">
-                        <a v-for="item in footerNavigation.social" :key="item.name" :href="item.href"
-                           class="text-gray-400 hover:text-gray-500">
-                            <span class="sr-only">{{ item.name }}</span>
-                            <component :is="item.icon" class="h-6 w-6" aria-hidden="true"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-base font-medium text-gray-900">Solutions</h3>
-                            <ul role="list" class="mt-4 space-y-4">
-                                <li v-for="item in footerNavigation.solutions" :key="item.name">
-                                    <router-link
-                                          :active-class="'border-gray-900 text-gray-900 inline-flex items-center border-b-2 text-sm font-medium'"
-                                          :class="'text-base text-gray-500 hover:text-gray-900'"
-                                          :to="item.href"
-                                    >
-                                        {{ item.name }}
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-base font-medium text-gray-900">Support</h3>
-                            <ul role="list" class="mt-4 space-y-4">
-                                <li v-for="item in footerNavigation.support" :key="item.name">
-                                    <router-link
-                                          :active-class="'border-gray-900 text-gray-900 inline-flex items-center border-b-2 text-sm font-medium'"
-                                          :class="'text-base text-gray-500 hover:text-gray-900'"
-                                          :to="item.href"
-                                    >
-                                        {{ item.name }}
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-base font-medium text-gray-900">Company</h3>
-                            <ul role="list" class="mt-4 space-y-4">
-                                <li v-for="item in footerNavigation.company" :key="item.name">
-                                    <router-link
-                                          :active-class="'border-gray-900 text-gray-900 inline-flex items-center border-b-2 text-sm font-medium'"
-                                          :class="'text-base text-gray-500 hover:text-gray-900'"
-                                          :to="item.href"
-                                    >
-                                        {{ item.name }}
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-base font-medium text-gray-900">Legal</h3>
-                            <ul role="list" class="mt-4 space-y-4">
-                                <li v-for="item in footerNavigation.legal" :key="item.name">
-                                    <router-link
-                                          :active-class="'border-gray-900 text-gray-900 inline-flex items-center border-b-2 text-sm font-medium'"
-                                          :class="'text-base text-gray-500 hover:text-gray-900'"
-                                          :to="item.href"
-                                    >
-                                        {{ item.name }}
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-12 border-t border-gray-200 py-8">
-                <p class="text-base text-gray-400 xl:text-center">&copy; 2020 Your Company, Inc. All rights
+            <div class="border-t border-gray-400 py-8">
+                <p class="text-base text-gray-400 xl:text-center">&copy; 2023 Agapanthus Consulting, All rights
                     reserved.</p>
             </div>
-        </div>
     </footer>
 
 </template>

@@ -81,12 +81,12 @@ Functions
 async function validateForm() {
 
     const {valid} = await validate()
-    console.dir(valid)
-    console.dir(errors)
+    //console.dir(valid)
+    //console.dir(errors)
     if(valid){
         formValues.enquiry=enquiry.value
     }else{
-        console.log("Something Else failed")
+        //console.log("Something Else failed")
     }
     return {
         valid,

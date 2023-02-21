@@ -94,7 +94,7 @@ const userFound = ref(false)
 
 const enquiryStore = useEnquiryStore()
 const {enquiry} = storeToRefs(enquiryStore)
-console.log(enquiry)
+//console.log(enquiry)
 
 if (enquiryStore.enquiry.user !== null) {
     userFound.value = true
@@ -129,7 +129,7 @@ const formatDate = (dateToFormat) => {
 onBeforeMount(async () => {
 
     //const enquiryStore = useEnquiryStore()
-    //console.log(enquiryStore)
+    ////console.log(enquiryStore)
     //const {enquiry} = storeToRefs(enquiryStore.enquiry)
     dataLoaded.value = true
 

@@ -38,7 +38,7 @@ export default function useMiscService() {
         return response.data
     }
     const getEnquiry = async (payload) => {
-        console.log(payload)
+        //console.log(payload)
         let response = await apiClient.get('/enquiry/' + payload)
         return response
     }
@@ -94,19 +94,19 @@ export default function useMiscService() {
     }
     const sendInvitation = async (payload) => {
         let response = await apiClient.post('/invite/enquirer/', payload)
-        console.log(response.data)
+        //console.log(response.data)
         return response.data
     }
     const retrieveInvitation = async (payload) => {
-        console.log(payload)
+        //console.log(payload)
         let response = await apiClient.get('/retrieve-invitation/' + payload)
-        console.log(response.data)
+        //console.log(response.data)
         return response
     }
     const revokeInvitation = async (payload) => {
-        console.log(payload)
+        //console.log(payload)
         let response = await apiClient.post('/revoke-invitation/' + payload)
-        console.log(response.data)
+        //console.log(response.data)
         return response
     }
 

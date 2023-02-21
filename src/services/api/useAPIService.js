@@ -18,11 +18,11 @@ export default function useAPIService() {
             /*
             All good. Return the received response from Axios.
              */
-            console.log(response)
+            //console.log(response)
             return response;
         },
        (error)=> {
-            console.log(error)
+            //console.log(error)
             let errorMessage=errorHandler(error)
             return Promise.reject (errorMessage)
         }
