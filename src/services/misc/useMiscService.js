@@ -7,7 +7,7 @@ export default function useMiscService() {
         withCredentials: true is required to handle the CSRF token to/from sanctum
      */
     const apiClient = axios.create({
-        baseURL: 'http://localhost:8000' + "/api",
+        baseURL: import.meta.env.VITE_API_DOMAIN + "/api",
         withCredentials: true,
     })
     /*

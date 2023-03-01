@@ -352,7 +352,7 @@ async function initialiseForm() {
         }
     } catch (e) {
         errorMessage.value = await errorMessageHandler(e)
-        console.log(errorMessage.value.status)
+        //console.log(errorMessage.value.status)
         //if(errorMessage.value.status==='500'){
         //    console.log("caught it")
         //    await handleHttpError(errorMessage.value.status,errorMessage.value.title,errorMessage.value.description)

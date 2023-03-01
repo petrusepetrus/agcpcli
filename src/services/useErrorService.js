@@ -13,7 +13,7 @@ export default function useErrorService(){
                 to access the error information
                  */
                 //console.log(error)
-                console.log("promise in useErrorService")
+                //console.log("promise in useErrorService")
                 errorMessage.title = error.title
                 errorMessage.description = error.description
                 errorMessage.status=error.status
@@ -32,7 +32,7 @@ export default function useErrorService(){
         return errorMessage
     }
     async function handleHttpError(errorResponseStatus, errorResponseTitle, errorResponseDescription) {
-        console.log(errorResponseStatus)
+        //console.log(errorResponseStatus)
         await router.push({
             name: 'httperror',
             params: {
@@ -41,7 +41,7 @@ export default function useErrorService(){
                 errorDescription: errorResponseDescription
             }
         })
-        console.log("returned from http")
+        //console.log("returned from http")
     }
     return{
         errorMessageHandler,

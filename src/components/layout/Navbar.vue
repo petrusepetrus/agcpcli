@@ -17,7 +17,7 @@
                             <a href="/home">
                                 <span class="sr-only">Agapanthus Consulting</span>
                                 <img class="hidden lg:block mx-auto h-12 w-auto w-12 rounded-full border-gray-400 border-solid border-2 hover:border-teal-600 "
-                                     src="/src/assets/images/agcplogotrsp150x150.png"
+                                     src="/images/agcplogotrsp150x150.png"
                                      alt="Agapanthus Consulting"
                                 />
                             </a>
@@ -55,7 +55,7 @@
                             <span class="sr-only">Open user menu</span>
                             <img
                                   class="h-8 w-8 rounded-full border-gray-400 border-solid border-2 hover:border-teal-600"
-                                  src="/src/assets/images/peter 1024x1024.jpg"
+                                  src="/images/peter_1024x1024.jpg"
                                   :alt="user.name"
                             />
                         </MenuButton>

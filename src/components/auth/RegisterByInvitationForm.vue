@@ -1,23 +1,24 @@
 <template>
-    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="bg-black min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-1 bg-gray-100" src="/src/assets/images/agcplogotrsp150x150.png"
+            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-2 bg-gray-100"
+                 src="/images/agcplogotrsp150x150.png"
                  alt="Agapanthus Consulting"/>
             <h1 class="mt-6 text-center text-3xl font-extrabold text-cyan-600">Agapanthus Consulting</h1>
-            <h2 class="mt-6 text-center text-2xl font-extrabold text-cyan-500">Register for an account</h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
+            <h2 class="mt-6 text-center text-2xl font-extrabold text-cyan-500">Register your account</h2>
+            <p class="mt-2 text-center text-sm text-gray-300">
                 Already registered?
 
                 <router-link
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-teal-300 hover:text-teal-600"
                       to="/login">sign in to your account
                 </router-link>
             </p>
         </div>
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div class="bg-black py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <div>
-                    <p class="py-4 text-center text-sm text-gray-600">Please enter your credentials using the same email
+                    <p class="py-4 text-center text-sm text-gray-300">Please enter your credentials using the same email
                         address that you requested your invitation with.</p>
                 </div>
                 <form v-if="!userRegistered && invitationValid" novalidate class="space-y-6" @submit.prevent="onSubmit">
@@ -31,6 +32,8 @@
                               label=" First name"
                               name="first_name"
                               :error="errors.first_name"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -44,6 +47,8 @@
                               label="Last name"
                               name="last_name"
                               :error="errors.last_name"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -58,6 +63,8 @@
                               label="Email"
                               name="email"
                               :error="errors.email"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -71,6 +78,8 @@
                               label="Password"
                               name="password"
                               :error="errors.password"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -84,6 +93,8 @@
                               label="Password confirmation"
                               name="password_confirmation"
                               :error="errors.password_confirmation"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -116,7 +127,9 @@
 <script setup>
 /* Overview
 -------------------------------------------------------------------------------
-UserReview enables the management of a selected Enquiry
+RegisterByInvitation is activated by the the user clicking on the email
+sent to them by the API which includes a token that enables them to register
+for an account on the system.
 -------------------------------------------------------------------------------*/
 /*===============================================================================*/
 /* Imports
@@ -156,14 +169,12 @@ import useMiscService from "../../services/misc/useMiscService.js";
 /*===============================================================================*/
 
 /*===============================================================================*/
-/* Emits
-/*===============================================================================*/
-
-/*===============================================================================*/
 /* Variable Declaration and Initialisation
 /*===============================================================================*/
-
 const route = useRoute();
+const {registerUser, callUserAPI} = useAuthService()
+const {errorMessageHandler} = useErrorService()
+const {retrieveInvitation, revokeInvitation} = useMiscService()
 
 const registerMessage = reactive({})
 const userRegistered = ref(false)
@@ -208,21 +219,31 @@ const {value: email, handleChange} = useField('email', {validateOnValueUpdate: f
 const {value: password} = useField('password', {validateOnValueUpdate: false})
 const {value: password_confirmation} = useField('password_confirmation', {validateOnValueUpdate: false})
 /*===============================================================================*/
+/* Emits
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Watches
+/*===============================================================================*/
+
+/*===============================================================================*/
 /* Lifecycle Hooks
 /*===============================================================================*/
+/*
+validate whether there is a token attached to the invitation.
+if there is...
+    retrieve the invitation
+    check if the expire date has passed...
+        if it's in date...
+            carry on processing...
+ */
 onBeforeMount(async () => {
-
-    //console.log(route.query)
-
-    //console.log(invitationToken)
     if (!invitationToken) {
         errorMessage.value.title = "Invalid Invitation"
         errorMessage.value.description = "The invitation credentials are invalid. Please request another invitation."
     } else {
         try {
             let response = await retrieveInvitation(invitationToken)
-            //console.log(response)
-            //invitation_email.value=response.data.email
             let expireDate = new Date(response.data.expires_at)
             let currentDate = new Date()
             if ((expireDate - currentDate) <= 0) {
@@ -241,25 +262,14 @@ onBeforeMount(async () => {
 /*===============================================================================*/
 /* Functions
 /*===============================================================================*/
-const {registerUser, callUserAPI} = useAuthService()
-const {errorMessageHandler} = useErrorService()
-const {retrieveInvitation, revokeInvitation} = useMiscService()
-
 /*
-On submit
-Await the registerUser function response
-If there are any errors returned from the registerUser function raise these with vee-validate
+Validate the input registration details
+if the registration is valid...
+    register the user
+    retrieve their details
+    revoke the invitation as it is no longer needed
  */
 const onSubmit = handleSubmit(async (values) => {
-    /*
-    Purpose:
-        validate the input registration details and if successful, retrieve the user details
-        for the newly registered user
-    Parms:
-        Direct:
-            Values
-                the form values passed back by vee-validate
-*/
     if (email.value !== invitation_email.value) {
         setFieldError('email', 'This email address does not correspond to this invitation. Please request another invitation.')
     } else {

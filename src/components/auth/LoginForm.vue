@@ -2,7 +2,7 @@
     <div class="bg-black min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-2 bg-gray-100"
-                 src="/src/assets/images/agcplogotrsp150x150.png"
+                 src="/images/agcplogotrsp150x150.png"
                  alt="Agapanthus Consulting"/>
             <h1 class="mt-6 text-center text-3xl font-extrabold text-cyan-600">Agapanthus Consulting</h1>
 
@@ -86,45 +86,54 @@
 
 </template>
 <script setup>
-/*
-Overview
+/* Overview
+-------------------------------------------------------------------------------
 Provides login facilities for end user
 and initialise authorisation details for user in the authStore
-*/
-
-/* -----------------------------------------------------------------
-Imports
-------------------------------------------------------------------*/
-
+-------------------------------------------------------------------------------*/
+/*===============================================================================*/
+/* Imports
+/*===============================================================================*/
+/*-------------------------------------------------------------------------------*/
+/* Vue
+/*-------------------------------------------------------------------------------*/
 /* Vue */
 import {ref} from "vue";
-
-/* Services and Utilities */
-import useAuthService from "../../services/useAuthService.js";
-import useErrorService from "../../services/useErrorService.js";
-import {hasRole} from "../../utils/RolesAndPermissions.js";
-
-/* Stores */
-import {useAuthStore} from "../../stores/AuthStore";
-
-/* Validation */
-import {useField, useForm} from 'vee-validate'
-import {object, string} from 'yup'
-
-/* Router */
+/*-------------------------------------------------------------------------------*/
+/* Router
+/*-------------------------------------------------------------------------------*/
 import {useRouter} from "vue-router";
-
-/* Base Components */
+/*-------------------------------------------------------------------------------*/
+/* Components
+/*-------------------------------------------------------------------------------*/
 import BaseErrorMessage from "../ui/BaseErrorMessage.vue";
 import BaseInput from "../ui/BaseInput.vue";
 import BaseButton from "../ui/BaseButton.vue";
+/*-------------------------------------------------------------------------------*/
+/* Services and Utilities
+/*-------------------------------------------------------------------------------*/
+import useAuthService from "../../services/useAuthService.js";
+import useErrorService from "../../services/useErrorService.js";
+import {hasRole} from "../../utils/RolesAndPermissions.js";
+/*-------------------------------------------------------------------------------*/
+/* Stores
+/*-------------------------------------------------------------------------------*/
+import {useAuthStore} from "../../stores/AuthStore";
+/*-------------------------------------------------------------------------------*/
+/* Validation
+/*-------------------------------------------------------------------------------*/
+import {useField, useForm} from 'vee-validate'
+import {object, string} from 'yup'
+/*===============================================================================*/
+/* Props
+/*===============================================================================*/
 
-/* -----------------------------------------------------------------
-Initialisation and Set Up
-------------------------------------------------------------------*/
+/*===============================================================================*/
+/* Variable Declaration and Initialisation
+/*===============================================================================*/
 const router = useRouter()
 const authStore = useAuthStore()
-const {login} = useAuthService()
+const {login,logout} = useAuthService()
 const {errorMessageHandler} = useErrorService()
 const errorMessage = ref({})
 /*
@@ -139,37 +148,73 @@ const {handleSubmit, flgIsSubmitting, errors} = useForm({
 })
 const {value: email, handleChange} = useField('email')
 const {value: password} = useField('password')
+/*===============================================================================*/
+/* Emits
+/*===============================================================================*/
 
-/* -----------------------------------------------------------------
-Functions
-------------------------------------------------------------------*/
+/*===============================================================================*/
+/* Watches
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Lifecycle Hooks
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Functions
+/*===============================================================================*/
+const loginAttempt=async (values)=>{
+    await login(values)
+    if (authStore.isAuthenticated && authStore.isVerified) {
+        if (hasRole(['super admin', 'admin'])) {
+            router.push({name: "home"})
+        } else {
+            router.push({name: "user-dashboard"})
+        }
+    } else if (!authStore.isVerified) {
+        router.push({name: 'verify-email'})
+    }
+}
+/*
+On login attempt
+*/
 const onSubmit = handleSubmit(async values => {
     /*
     attempt to login
-    if successful
-    the login process will have retrieved the user information from the back end
-    and put this into the authStore. We then check to see if the user is authenticated and
-    verified before we direct them to the dashboard If they are not already verified we route them
-    to the verify email page
-    otherwise
-    output the error to the user
+    if successful...
+        the login process will have retrieved the user information from the back end
+        and put this into the authStore.
+        If the user is authenticated and verified...
+            we redirect them to the home page.
+        If they are not already verified we route them
+            to the verify email page
+    else, if the login is unsuccessful...
+        output the error to the user
     */
+    /**
+     * TODO
+     * need to adjust redirects to reflect behaviour for other authorised users
+     * should we decide to implement at some point
+     */
     try {
-        await login(values)
-//console.log("logged in")
-        if (authStore.isAuthenticated && authStore.isVerified) {
-            if (hasRole(['super admin', 'admin'])) {
-                router.push({name: "home"})
-            } else {
-                //console.log("heading to user-dashboard")
-                router.push({name: "user-dashboard"})
-            }
-        } else if (!authStore.isVerified) {
-            router.push({name: 'verify-email'})
-        }
+        await loginAttempt(values)
     } catch (e) {
-        errorMessage.value = await errorMessageHandler(e)
-//console.log(errorMessage.value.title)
+        let errorReturned = await errorMessageHandler(e)
+        //console.log(errorReturned)
+        if(errorReturned.status===419 || errorReturned.status===422){
+            //console.log(419)
+            try{
+                await logout()
+                await loginAttempt(values)
+                //console.log("success")
+            }catch(e){
+                //console.log("failed")
+                let errorReturned = await errorMessageHandler(e)
+                errorMessage.value=errorReturned
+            }
+        }else{
+            errorMessage.value=errorReturned
+        }
     }
     return {
         onSubmit,
@@ -179,6 +224,7 @@ const onSubmit = handleSubmit(async values => {
         errors
     }
 })
+
 </script>
 
 <style scoped>

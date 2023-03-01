@@ -1,20 +1,21 @@
 <template>
-    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="bg-black min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-1 bg-gray-100" src="/src/assets/images/agcplogotrsp150x150.png"
+            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-2 bg-gray-100"
+                 src="/images/agcplogotrsp150x150.png"
                  alt="Agapanthus Consulting"/>
             <h1 class="mt-6 text-center text-3xl font-extrabold text-cyan-600">Agapanthus Consulting</h1>
             <h2 class="mt-6 text-center text-2xl font-extrabold text-cyan-500">Reset your password</h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
+            <p class="mt-2 text-center text-sm text-gray-300">
                 Or, if you've remembered your password
                 {{ ' ' }}
-                <router-link class="font-medium text-indigo-600 hover:text-indigo-500"
+                <router-link class="font-medium text-teal-300 hover:text-teal-600"
                              to="/login">sign in to your account
                 </router-link>
             </p>
         </div>
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div class="bg-black py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form novalidate v-on:submit.prevent="onSubmit" class="space-y-6">
                     <div class="mt-1">
                         <BaseInput
@@ -26,6 +27,8 @@
                               name="email"
                               v-model="email"
                               :error="errors.email"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -40,6 +43,8 @@
                               name="password"
                               v-model="password"
                               :error="errors.password"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -54,6 +59,8 @@
                               name="password_confirmation"
                               v-model="password_confirmation"
                               :error="errors.password_confirmation"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -68,6 +75,8 @@
                               name="token"
                               v-model="token"
                               :error="errors.token"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -75,11 +84,11 @@
                         <div class="flex items-center">
                             <input id="remember-me" name="remember-me" type="checkbox"
                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
-                            <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-400"> Remember me </label>
                         </div>
 
                         <div class="text-sm">
-                            <router-link class="font-medium text-indigo-600 hover:text-indigo-500"
+                            <router-link class="font-medium text-teal-300 hover:text-teal-600"
                                          to="/forgot-password">Forgot your password
                             </router-link>
                         </div>
@@ -110,17 +119,49 @@
     </div>
 </template>
 <script setup>
+/* Overview
+-------------------------------------------------------------------------------
+UserReview enables the management of a selected Enquiry
+-------------------------------------------------------------------------------*/
+/*===============================================================================*/
+/* Imports
+/*===============================================================================*/
+/*-------------------------------------------------------------------------------*/
+/* Vue
+/*-------------------------------------------------------------------------------*/
 import {reactive,ref} from "vue";
+/*-------------------------------------------------------------------------------*/
+/* Router
+/*-------------------------------------------------------------------------------*/
 import {useRoute,useRouter} from 'vue-router'
-import useAuthService from "../../services/useAuthService";
+/*-------------------------------------------------------------------------------*/
+/* Components
+/*-------------------------------------------------------------------------------*/
 import BaseInput from "../ui/BaseInput.vue";
-import {useField, useForm} from 'vee-validate'
-import {object, string} from 'yup'
 import BaseErrorMessage from "../ui/BaseErrorMessage.vue";
 import BaseInformationMessage from "../ui/BaseInformationMessage.vue";
 import BaseButton from "../ui/BaseButton.vue";
+/*-------------------------------------------------------------------------------*/
+/* Services and Utilities
+/*-------------------------------------------------------------------------------*/
+import useAuthService from "../../services/useAuthService";
 import useErrorService from "../../services/useErrorService.js";
+/*-------------------------------------------------------------------------------*/
+/* Stores
+/*-------------------------------------------------------------------------------*/
 
+/*-------------------------------------------------------------------------------*/
+/* Validation
+/*-------------------------------------------------------------------------------*/
+import {useField, useForm} from 'vee-validate'
+import {object, string} from 'yup'
+/*===============================================================================*/
+/* Props
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Variable Declaration and Initialisation
+/*===============================================================================*/
 const {resetPassword} = useAuthService()
 const route = useRoute()
 const router=useRouter()
@@ -157,6 +198,21 @@ Initialise the hidden token field to the token value set by Laravel and passed
 back in the /reset-password query parameters
  */
 token.value = route.query.token
+/*===============================================================================*/
+/* Emits
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Watches
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Lifecycle Hooks
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Functions
+/*===============================================================================*/
 /*
 On submit call the resetPassword endpoint
  */

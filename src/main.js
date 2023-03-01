@@ -10,7 +10,7 @@ import {useAuthStore} from "./stores/AuthStore.js";
 import { VueReCaptcha } from "vue-recaptcha-v3"
 
 
-axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.baseURL = import.meta.env.VITE_API_DOMAIN
 axios.defaults.withCredentials = true
 
 const app = createApp(App)

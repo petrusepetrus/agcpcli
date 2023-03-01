@@ -14,7 +14,7 @@
                         <div aria-hidden="true" class="absolute inset-x-0 "/>
                         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:h-50 lg:w-50 lg:p-0 ">
                             <img class="inline-block h-32 w-32 md:h-48 md:w-48 rounded-full ring-4 ring-teal-500 -my-64 "
-                                 src="/src/assets/images/chrissy 1024x1024.jpg"
+                                 src="/images/chrissy_1024x1024.jpg"
                                  alt=""
                             />
                         </div>
@@ -74,7 +74,7 @@
                         <div aria-hidden="true" class="absolute inset-x-0 "/>
                         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:h-50 lg:w-50 lg:p-0 ">
                             <img class="inline-block h-32 w-32 md:h-48 md:w-48 rounded-full ring-4 ring-teal-500 -my-64"
-                                 src="/src/assets/images/linda 1024x1024.JPG"
+                                 src="/images/linda_1024x1024.jpg"
                                  alt=""/>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                         <div aria-hidden="true" class="absolute inset-x-0 top-0 h-1/2 lg:hidden overflow-hidden"/>
                         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:h-50 lg:w-50 lg:p-0 ">
                             <img class="inline-block h-32 w-32 md:h-48 md:w-48 rounded-full ring-4 ring-teal-500 -my-64"
-                                 src="src/assets/images/lorraine 1024x1024.jpg"
+                                 src="../../../public/images/lorraine_1024x1024.jpg"
                                  alt="Lorraine from Affinity and Beyond"/>
                         </div>
                     </div>

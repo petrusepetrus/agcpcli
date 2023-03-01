@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-black">
-        <div class="pt-8 pb-2 md:pb-6 mx-auto max-w-md text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8 md:px-8 sm:px-2">
+    <div class="bg-black py-16 md:py-24 lg:py-16">
+        <div class="pb-2 md:pb-6 mx-auto max-w-md text-center sm:max-w-3xl lg:max-w-7xl ">
             <h2 class="text-lg font-semibold text-cyan-300">Testimonials</h2>
         </div>
         <p class="mt-2 mb-24 text-center text-3xl font-bold tracking-tight text-teal-500 sm:text-4xl">
@@ -12,7 +12,7 @@
                   v-for="testimonial in testimonialParts"
                   :key="testimonial.id"
                   class="pt-8 lg:col-span-1 col-span-3 mt-8 pb-16 lg:z-10 lg:pb-0 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-xl
-                            gap-8 px-8 lg:my-8 my-24 ">
+                            gap-8 px-8  ">
                 <div class="mt-4 pb-16 lg:z-10 lg:pb-0">
                     <div class="relative">
                         <div aria-hidden="true" class="absolute inset-x-0"/>
@@ -102,7 +102,7 @@ const testimonialParts = [
         href:
               'https://principlepilates.com/',
         imageUrl:
-              'src/assets/images/chrissy 1024x1024.jpg',
+              '/images/chrissy_1024x1024.jpg',
     },
     {
         id: 2,
@@ -141,7 +141,7 @@ const testimonialParts = [
         href:
               'https://littlebrookhouse.co.uk/',
         imageUrl:
-              'src/assets/images/linda 1024x1024.jpg',
+              '/images/linda_1024x1024.jpg',
     },
     {
         id: 3,
@@ -179,7 +179,7 @@ const testimonialParts = [
         href:
               'https://affinity-and-beyond.co.uk/',
         imageUrl:
-              'src/assets/images/lorraine 1024x1024.jpg',
+              '/images/lorraine_1024x1024.jpg',
     },
 ]
 

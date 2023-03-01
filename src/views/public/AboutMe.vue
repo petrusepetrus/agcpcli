@@ -31,10 +31,10 @@
                             </p>
                             <p class="">
                                 I love working with my clients. Each business is unique and trying to understand
-                                what it does, where the client is trying to take it to and the issues they
+                                what it does, where the client is trying to take it and the issues they
                                 are wrestling with can be interesting, challenging and exciting.
                                 </p>
-                            <p>I emjoy trying to come up with innovative ways to use technology
+                            <p>I enjoy trying to come up with innovative ways to use technology
                                 as part of these transformations and helping clients get a consistent presentation of
                                 their brand across their various marketing activities.
                             </p>
@@ -53,7 +53,7 @@
 
                         <div class="">
                             <img
-                                  src="src/assets/images/peter 1024x1024.jpg"
+                                  src="/images/peter_1024x1024.jpg"
                                   alt=""
                                   sizes="(min-width: 256px) 32rem, 20rem"
                                   class="rounded-2xl  object-cover "

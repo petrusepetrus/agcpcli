@@ -47,7 +47,7 @@
                         <BaseButton
                               @click.prevent="acceptCookies"
                               title="Accept Cookies"
-                              input-class="bg-gradient-to-r from-gray-900 to-gray-500 hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-500
+                              input-class="bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-500 hover:to-gray-300
                                 w-32 inline-flex w-full justify-center rounded-md border md:mt-0  sm:mt-32 m-2"
                         >
                             Submit form

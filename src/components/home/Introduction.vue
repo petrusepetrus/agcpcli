@@ -43,7 +43,7 @@
                 <div class="mt-12 md:-mb-2 sm:-mb-48 lg:relative lg:m-0">
                     <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                         <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 md:h-full lg:w-auto lg:max-w-none"
-                             src="/src/assets/images/websitedesign.jpg" alt=""/>
+                             src="/images/website_design.jpg" alt=""/>
                     </div>
                 </div>
             </div>

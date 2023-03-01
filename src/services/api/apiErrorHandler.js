@@ -138,12 +138,12 @@ export default async function errorHandler(error) {
             //console.log(errorResponse)
             return errorResponse
         }else{
-            console.log("this one ")
+            //console.log("this one ")
             errorResponse.status = "500"
             errorResponse.title = 'Network problems are preventing connection.'
             errorResponse.description='Please check your network status and try again. If the problem persists please contact your designated contact.'
             // await handleHttpError(errorResponse.status, errorResponse.title, errorResponse.description)
-            console.log(errorResponse)
+            //console.log(errorResponse)
             return errorResponse
         }
 

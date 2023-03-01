@@ -6,8 +6,9 @@ export default function useAPIService() {
     The base axios structure for the call to the laravel back end.
         withCredentials: true is required to handle the CSRF token to/from sanctum
      */
+    //baseURL: import.meta.env.VITE_API_DOMAIN + "/api",
     const apiClient = axios.create({
-        baseURL: 'http://localhost:8000' + "/api",
+        baseURL: import.meta.env.VITE_API_DOMAIN + "/api",
         withCredentials: true,
     })
     /*

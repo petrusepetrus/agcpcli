@@ -1,21 +1,22 @@
 <template>
-    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="bg-black min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-1 bg-gray-100" src="/src/assets/images/agcplogotrsp150x150.png"
+            <img class="mx-auto h-24 w-auto w-24 rounded-full border-cyan-600 border-solid border-2 bg-gray-100"
+                 src="/images/agcplogotrsp150x150.png"
                  alt="Agapanthus Consulting"/>
             <h1 class="mt-6 text-center text-3xl font-extrabold text-cyan-600">Agapanthus Consulting</h1>
             <h2 class="mt-6 text-center text-2xl font-extrabold text-cyan-500">Register for an account</h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
+            <p class="mt-2 text-center text-sm text-gray-300">
                 Already registered?
                 {{ ' ' }}
                 <router-link
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-teal-300 hover:text-teal-600"
                       to="/login">sign in to your account
                 </router-link>
             </p>
         </div>
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div class="bg-black py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <form v-if="!userRegistered" novalidate class="space-y-6" @submit.prevent="onSubmit">
                     <div class="mt-1">
                         <BaseInput
@@ -27,6 +28,8 @@
                               label=" First name"
                               name="first_name"
                               :error="errors.first_name"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -40,6 +43,8 @@
                               label="Last name"
                               name="last_name"
                               :error="errors.last_name"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -53,6 +58,8 @@
                               label="Email"
                               name="email"
                               :error="errors.email"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -67,6 +74,8 @@
                               label="Password"
                               name="password"
                               :error="errors.password"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -80,6 +89,8 @@
                               label="Password confirmation"
                               name="password_confirmation"
                               :error="errors.password_confirmation"
+                              :label-class="'block text-md text-gray-300'"
+                              :input-class="'block w-full rounded-md  py-2 px-4  font-medium text-gray-500'"
                         >
                         </BaseInput>
                     </div>
@@ -108,40 +119,59 @@
 </template>
 
 <script setup>
-/*
-Vue
- */
+/* Overview
+-------------------------------------------------------------------------------
+UserReview enables the management of a selected Enquiry
+-------------------------------------------------------------------------------*/
+/*===============================================================================*/
+/* Imports
+/*===============================================================================*/
+/*-------------------------------------------------------------------------------*/
+/* Vue
+/*-------------------------------------------------------------------------------*/
 import {reactive, ref} from "vue";
-/*
-Store
- */
-import {useAuthStore} from "../../stores/AuthStore.js"
-import {storeToRefs} from 'pinia'
-import useAuthService from "../../services/useAuthService";
-import useErrorService from "../../services/useErrorService.js";
+/*-------------------------------------------------------------------------------*/
+/* Router
+/*-------------------------------------------------------------------------------*/
 
-const {registerUser, callUserAPI} = useAuthService()
-const registerMessages = ref('')
-/*
-Validations
- */
-import {object, string} from "yup";
-import {useField, useForm} from "vee-validate";
-/*
-Base Components
- */
+/*-------------------------------------------------------------------------------*/
+/* Components
+/*-------------------------------------------------------------------------------*/
 import BaseErrorMessage from "../ui/BaseErrorMessage.vue";
 import BaseInput from "../ui/BaseInput.vue";
 import BaseInformationMessage from "../ui/BaseInformationMessage.vue";
 import BaseButton from "../ui/BaseButton.vue";
+/*-------------------------------------------------------------------------------*/
+/* Services and Utilities
+/*-------------------------------------------------------------------------------*/
+import useAuthService from "../../services/useAuthService";
+import useErrorService from "../../services/useErrorService.js";
+/*-------------------------------------------------------------------------------*/
+/* Stores
+/*-------------------------------------------------------------------------------*/
+import {useAuthStore} from "../../stores/AuthStore.js"
+import {storeToRefs} from 'pinia'
+/*-------------------------------------------------------------------------------*/
+/* Validation
+/*-------------------------------------------------------------------------------*/
+import {object, string} from "yup";
+import {useField, useForm} from "vee-validate";
+/*===============================================================================*/
+/* Props
+/*===============================================================================*/
 
+/*===============================================================================*/
+/* Variable Declaration and Initialisation
+/*===============================================================================*/
 const authStore = useAuthStore()
 const {user} = storeToRefs(authStore)
-const userRegistered = ref(false)
 const {errorMessageHandler}=useErrorService()
+const {registerUser, callUserAPI} = useAuthService()
+
+const registerMessages = ref('')
+const userRegistered = ref(false)
 const errorMessage=reactive({})
 
-//const {registerUser,registerErrors,registerMessages}=useRegister()
 const form = reactive({
     first_name: '',
     last_name: '',
@@ -149,7 +179,6 @@ const form = reactive({
     password: '',
     password_confirmation: ''
 })
-
 /*
 Set up the vee-validate validation schema
  */
@@ -175,6 +204,21 @@ const {value: last_name} = useField('last_name')
 const {value: email, handleChange} = useField('email')
 const {value: password} = useField('password')
 const {value: password_confirmation} = useField('password_confirmation')
+/*===============================================================================*/
+/* Emits
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Watches
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Lifecycle Hooks
+/*===============================================================================*/
+
+/*===============================================================================*/
+/* Functions
+/*===============================================================================*/
 /*
 On submit
 Await the registerUser function response

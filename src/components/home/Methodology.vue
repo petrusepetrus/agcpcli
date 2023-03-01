@@ -1,5 +1,5 @@
 <template>
-    <div class="relative bg-gray-50 py-16 sm:py-24 lg:py-16">
+    <div class="relative bg-gray-50  py-8 md:py-12 lg:py-24">
         <div class="relative">
             <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 class="text-lg font-semibold text-cyan-600">How We Work</h2>
@@ -14,7 +14,7 @@
                 <div v-for="post in methodologyParts" :key="post.id"
                      class="flex flex-col overflow-hidden rounded-lg shadow-lg">
                     <div class="flex-shrink-0">
-                        <img class="h-48 w-full object-cover" :src="post.imageUrl" alt=""/>
+                        <img class="h-48 w-full object-cover" :src="imageURL(post.imageUrl)" alt=""/>
                     </div>
                     <div class="flex flex-1 flex-col justify-between bg-white p-6">
 
@@ -48,7 +48,7 @@ const methodologyParts = [
         datetime: '2020-03-16',
         category: {name: 'Article', href: '#'},
         imageUrl:
-              'src/assets/images/idea original 1024x683.jpg',
+              '/images/idea_1024x683.jpg',
         preview:
               'We start with a free, exploratory conversation to see whether there is a good fit between ' +
               'what you are trying to accomplish and the services we can provide.',
@@ -68,7 +68,7 @@ const methodologyParts = [
         datetime: '2020-03-16',
         category: {name: 'Article', href: '#'},
         imageUrl:
-              'src/assets/images/project defintion 1024x683.jpg',
+              '/images/project_defintion_1024x683.jpg',
         preview:
               'We delve deeper into what you are trying to achieve as a business and ' +
               'how a web site and digital marketing might support those desired outcomes.',
@@ -88,7 +88,7 @@ const methodologyParts = [
         datetime: '2020-03-10',
         category: {name: 'Video', href: '#'},
         imageUrl:
-              'src/assets/images/proposal development 1024x684.jpg',
+              '/images/proposal_development_1024x684.jpg',
         preview:
               'We take a more detailed look at the aesthetic and functional design of the system ' +
               'to provide a costed proposal for the website development and ' +
@@ -109,7 +109,7 @@ const methodologyParts = [
         datetime: '2020-03-10',
         category: {name: 'Video', href: '#'},
         imageUrl:
-              'src/assets/images/design and development 1024x683.jpg',
+              '/images/design_and_development_1024x683.jpg',
         preview:
               'By using an iterative, interactive approach to design and development, ' +
               'we are able to get feedback on the design quickly ' +
@@ -130,7 +130,7 @@ const methodologyParts = [
         datetime: '2020-02-12',
         category: {name: 'Case Study', href: '#'},
         imageUrl:
-              'src/assets/images/implementation 1024x680.jpg',
+              '/images/implementation_1024x680.jpg',
         preview:
               'We can deploy to our hosting services or your own hosting provider, as needed. ' +
               'An agreed period of post-implementation support to ensure the website is behaving as expected ' +
@@ -151,7 +151,7 @@ const methodologyParts = [
         datetime: '2020-02-12',
         category: {name: 'Case Study', href: '#'},
         imageUrl:
-              'src/assets/images/maintenance 1024x768.jpg',
+              '/images/maintenance_1024x768.jpg',
         preview:
               'Choose between no-frills technical maintenance, ' +
               'aimed at keeping your website up to date and running smoothly, or comprehensive ' +
@@ -166,6 +166,11 @@ const methodologyParts = [
         readingLength: '11 min',
     },
 ]
+const imageURL=(hrefName)=>{
+    let tmpURL=new URL(hrefName, import.meta.url)
+    //console.log(import.meta.url + " " + tmpURL)
+    return tmpURL
+}
 </script>
 
 <style scoped>

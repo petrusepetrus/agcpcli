@@ -47,7 +47,7 @@
                     <div class="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0 ">
                         <div class="mx-auto  max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                             <img class="lg:absolute lg:inset-y-0 lg:left-0 max-h-80 "
-                                 src="/src/assets/images/websitedesign.jpg" alt=""/>
+                                 src="/images/website_design.jpg" alt=""/>
                         </div>
                     </div>
                 </div>

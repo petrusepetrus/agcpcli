@@ -9,7 +9,7 @@ export default function useAuthService() {
         withCredentials: true is required to handle the CSRF token to/from sanctum
      */
     const authClient = axios.create({
-        baseURL: 'http://localhost:8000',
+        baseURL: import.meta.env.VITE_API_DOMAIN,
         withCredentials: true,
     })
     /*

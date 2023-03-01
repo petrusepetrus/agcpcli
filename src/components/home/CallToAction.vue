@@ -2,7 +2,7 @@
     <div class="relative bg-black">
         <div class="relative h-56 bg-black sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
             <img class="h-full w-full object-cover"
-                 src="/src/assets/images/websitedesign.jpg"
+                 src="/images/website_design.jpg"
                  alt=""/>
             <div aria-hidden="true"
                  class="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"/>
