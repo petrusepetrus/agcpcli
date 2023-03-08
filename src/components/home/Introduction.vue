@@ -10,7 +10,7 @@
                         </h1>
                         <h2 class="mt-4 text-4xl font-bold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                             <span class="block">A better way to</span>
-                            <span class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">build your web site</span>
+                            <span class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">build your website</span>
                         </h2>
                         <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
                             Specialising in websites for small businesses, Agapanthus Consulting offers a

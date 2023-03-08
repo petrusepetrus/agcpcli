@@ -7,7 +7,7 @@
                     Development</p>
                 <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
                     Our working methodology provides a structured approach to defining your business needs
-                    and designing a web site that meets those requirements.
+                    and designing a website that meets those requirements.
                 </p>
             </div>
             <div class="mx-auto mt-12 grid gap-8 px-2 md:px-4 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
@@ -71,7 +71,7 @@ const methodologyParts = [
               '/images/project_defintion_1024x683.jpg',
         preview:
               'We delve deeper into what you are trying to achieve as a business and ' +
-              'how a web site and digital marketing might support those desired outcomes.',
+              'how a website and digital marketing might support those desired outcomes.',
         author: {
             name: 'Roel Aufderehar',
             imageUrl:

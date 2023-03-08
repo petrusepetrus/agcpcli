@@ -123,7 +123,7 @@
 
                             <td class="px-3 py-4 text-sm text-gray-200 sm:table-cell">
                                 <div class="text-left">
-                                    <a :href="`mailto: ${user.email}`" >{{user.email}}</a>
+                                    <a :href="`mailto: ${user.email}`">{{ user.email }}</a>
                                 </div>
                                 <div v-for="phone in user.phones">
                                     <div v-if="phone.pivot.preferred_contact_number!==0" class="float-right w-1/6">
@@ -262,12 +262,12 @@ let userTypeSelected = ref([])
 let userTypeStatusSelected = ref([])
 let usersFound = ref(false)
 let flgIsLoading = ref(false)
-let flgIsDeleting=ref(false)
+let flgIsDeleting = ref(false)
 let error = reactive({})
 let warning = reactive({})
 let queryParams = reactive({
-    pageNumber: 0,
-    recordsPerPage: 8,
+    pageNumber: 1,
+    recordsPerPage: 1,
     nameQuery: "",
     userTypeQuery: ""
 })
@@ -278,7 +278,7 @@ const {getUsers, getUserTypes, getUserTypeStatuses} = useUserService()
 /* Lifecycle Hooks
 /*===============================================================================*/
 onBeforeMount(async () => {
-    flgIsLoading.value=true
+          flgIsLoading.value = true
           /*
     Fetch the user types and statuses for the search bar
      */
@@ -287,12 +287,17 @@ onBeforeMount(async () => {
           /*
 checkout the page number we are referring to
 */
-          let stringToBeSearched = document.location.search
+          console.log(window.location)
+          let stringToBeSearched = window.location.search
+          console.log(stringToBeSearched)
           let searchString = "page="
           queryParams.pageNumber = stringToBeSearched.substring(stringToBeSearched.search(searchString) + searchString.length, stringToBeSearched.length)
-
+          console.log(queryParams.pageNumber)
+          if (queryParams.pageNumber === "") {
+              queryParams.pageNumber = 1
+          }
           await getUsersList()
-          //console.log(paginationData.path)
+          console.log(paginationData.path)
           if (usersFound.value === false) {
               warning.title = "No users found"
               warning.description = "No users match your chosen criteria."
@@ -302,7 +307,7 @@ checkout the page number we are referring to
                       /*
                 change the browser URL to reflect page number
                 */
-                      await changePageURL(paginationData.current_page)
+                      //await changePageURL(paginationData.current_page)
                   } catch (e) {
                       if (testIfPromise(e)) {
                           e.then((value) => {
@@ -413,10 +418,10 @@ const getUsersList = async () => {
 const pageChange = async (newPage) => {
     queryParams.pageNumber = newPage
     await getUsersList()
-    //console.log(paginationData.path)
+    console.log(paginationData.path)
     if (paginationData.path) {
         try {
-            changePageURL(newPage)
+            //changePageURL(newPage)
         } catch (e) {
             if (testIfPromise(e)) {
                 e.then((value) => {
@@ -438,6 +443,7 @@ const pageChange = async (newPage) => {
 const changePageURL = (newPage) => {
     const url = new URL(window.location);
     url.searchParams.set('page', newPage);
+    console.log(url)
     window.history.pushState({}, '', url);
 }
 

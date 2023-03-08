@@ -38,11 +38,12 @@ export default function useUserService() {
     Users
      */
     const getUsers=async(payload)=>{
-         let response= await apiClient.get('/users/?page=' + payload.pageNumber,{
+        console.log(payload)
+         let response= await apiClient.get('/users/?page=' + payload.pageNumber ,{
             params:payload
         })
         //console.log("done getUsers")
-        //console.log(response.data)
+        console.log(response.data)
         return response.data
     }
     /*

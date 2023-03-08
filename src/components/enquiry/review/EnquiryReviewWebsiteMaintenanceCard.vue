@@ -28,7 +28,7 @@
                     <BaseCheckbox
                           v-model="enquiry.bare_bones_chk"
                           :label="'Bare Bones'"
-                          :label-description="'Minimal maintenance to keep web site live. Any project work charged on a time and materials basis.'"
+                          :label-description="'Minimal maintenance to keep website live. Any project work charged on a time and materials basis.'"
                           :model-value="Boolean(enquiry.bare_bones_chk)"
                           :name="'bare_bones_chk'"
                           :label-class="'text-md text-gray-300'"
