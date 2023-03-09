@@ -39,7 +39,8 @@ export default function useUserService() {
      */
     const getUsers=async(payload)=>{
         console.log(payload)
-         let response= await apiClient.get('/users/?page=' + payload.pageNumber ,{
+        console.log(import.meta.env.VITE_API_DOMAIN + "/api" + '/users?page=' + payload.pageNumber)
+         let response= await apiClient.get('/users?page=' + payload.pageNumber ,{
             params:payload
         })
         //console.log("done getUsers")
@@ -74,7 +75,8 @@ export default function useUserService() {
 
 
     const getUserAddresses = async(payload)=>{
-        let response=await apiClient.get('/user-addresses/' + payload + '/')
+        console.log()
+        let response=await apiClient.get('/user-addresses/' + payload )
         return response.data
     }
 
@@ -86,11 +88,15 @@ export default function useUserService() {
     Phone numbers
      */
     const addUserPhone = async(payload,userID) => {
+        console.log(payload + " " + userID)
+        let urlString='/store-phone/user/'+ userID
+        console.log(urlString)
         let response= await apiClient.post('/store-phone/user/'+ userID ,payload)
         return response.data
     }
 
     const updateUserPhone = async(payload,userID,phoneID) => {
+        console.log(payload + " " + userID + " " + phoneID)
         let response= await apiClient.post('/update-phone/user/'+ userID + '/phone/' + phoneID,payload)
         return response.data
     }
@@ -101,7 +107,7 @@ export default function useUserService() {
     }
 
     const getUserPhones = async(payload)=>{
-        let response=await apiClient.get('/user-phones/' + payload + '/')
+        let response=await apiClient.get('/user-phones/' + payload)
         //console.log(response.data)
         return response.data
     }

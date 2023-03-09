@@ -104,7 +104,7 @@
                             </th>
                             <th
                                   scope="col"
-                                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-400">
+                                  class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-400">
                                 Roles
                             </th>
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -135,7 +135,7 @@
 
                                 </div>
                             </td>
-                            <td class="px-3 py-4 text-sm text-gray-200 sm:table-cell">
+                            <td class="hidden px-3 py-4 text-sm text-gray-200 sm:table-cell">
                                 <div v-for="userType in user.user_user_type">
                                     <div class="text-gray-200">
                                         {{ userType.user_type.user_type }}

@@ -43,7 +43,7 @@
                             {{ comment.comment }}
                         </div>
                     </td>
-                    <td class="px-3 py-4 text-sm text-gray-300 sm:table-cell">
+                    <td class="hidden px-3 py-4 text-sm text-gray-300 sm:table-cell">
                         <div class="px-3 text-sm text-gray-300  ">
                             {{ formatDate(comment.created_at) }}
                         </div>
@@ -67,9 +67,6 @@
                 </tr>
                 </tbody>
             </table>
-
-
-            {{ informationMessage.title }}
             <div v-if="informationMessage.title" class="mt-6 lg:col-span-1 md:col-span-1 sm:col-span-4">
                 <BaseInformationMessage
                       :title="informationMessage.title"

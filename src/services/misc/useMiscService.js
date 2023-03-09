@@ -44,7 +44,7 @@ export default function useMiscService() {
     }
 
     const getEnquiries = async (payload) => {
-        let response = await apiClient.get('/enquiries/?page=' + payload.pageNumber, {
+        let response = await apiClient.get('/enquiries?page=' + payload.pageNumber, {
             params: payload
         })
         return response.data

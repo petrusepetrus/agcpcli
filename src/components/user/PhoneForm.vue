@@ -333,21 +333,21 @@ const onSubmit = handleSubmit(async (values) => {
     flgIsSaving.value=true
     if (changeMode === true) {
         try {
-            flgIsSubmitting.value = true
             await updateUserPhone(values, props.userID, props.userPhone.value.id)
-            flgIsSubmitting.value = false
             emit('updated')
         } catch (e) {
             errorMessage.value = await errorMessageHandler(e)
             processForm.value = false
         }
     } else {
+
         try {
-            flgIsSubmitting.value = true
+            console.log("adding phone " + values)
             await addUserPhone(values, props.userID)
-            flgIsSubmitting.value = false
             emit('refresh')
+
         } catch (e) {
+            console.log("broke")
             errorMessage.value = await errorMessageHandler(e)
         }
     }

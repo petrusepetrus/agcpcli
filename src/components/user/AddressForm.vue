@@ -352,18 +352,14 @@ const onSubmit = handleSubmit(async (values) => {
      */
     if (changeMode === true) {
         try {
-            isSubmitting.value = true
             await updateUserAddress(values, props.userID, props.userAddress.value.id)
-            isSubmitting.value = false
             emit('updated')
         } catch (e) {
             errorMessage.value = await errorMessageHandler(e)
         }
     } else {
         try {
-            isSubmitting.value = true
             await addUserAddress(values, props.userID)
-            isSubmitting.value = false
             emit('refresh')
         } catch (e) {
             errorMessage.value = await errorMessageHandler(e)

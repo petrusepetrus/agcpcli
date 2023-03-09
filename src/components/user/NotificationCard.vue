@@ -318,7 +318,7 @@ const onSubmit = async () => {
         formData.append('opt-out', +optOut.value)
         ////console.log(formData)
         try {
-            if (flgPreferencesFound === false) {
+            if (flgPreferencesFound.value === false) {
                 await createUserNotificationPreference(formData, userID)
             } else {
                 await updateUserNotificationPreference(formData, userID)
