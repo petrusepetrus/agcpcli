@@ -55,7 +55,7 @@
                             <span class="sr-only">Open user menu</span>
                             <img
                                   class="h-8 w-8 rounded-full border-gray-400 border-solid border-2 hover:border-teal-600"
-                                  src="/images/peter_1024x1024.jpg"
+                                  src="/images/peter_256x319.jpg"
                                   :alt="user.name"
                             />
                         </MenuButton>

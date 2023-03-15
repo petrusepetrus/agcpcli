@@ -53,7 +53,7 @@
 
                         <div class="">
                             <img
-                                  src="/images/peter_1024x1024.jpg"
+                                  src="/images/peter_1024x1276.jpg"
                                   alt=""
                                   sizes="(min-width: 256px) 32rem, 20rem"
                                   class="rounded-2xl  object-cover "

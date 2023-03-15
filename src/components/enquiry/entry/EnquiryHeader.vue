@@ -12,6 +12,7 @@
     <form
           novalidate
           v-if="!isLoading && !errorMessage.title"
+          class=""
     >
         <div class="">
             <div class="sm:flex-auto">
@@ -129,6 +130,7 @@
                 <BaseSelect
                       v-model="enquiry_type"
                       label="Enquiry Type"
+                      :value="null"
                       :options="enquiry_types"
                       :required="true"
                       :disabled="props.disabled"

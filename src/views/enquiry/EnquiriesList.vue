@@ -430,9 +430,12 @@ const getEnquiriesList = async () => {
     flgIsLoading.value = true
     enquiriesFound.value = false
     try {
+        warning={}
         let response = await getEnquiries(queryParams)
         if (response.data.length === 0) {
             enquiriesFound.value = false
+            warning.title="No enquiries were found."
+            warning.description="No enquiries were found matching your criteria."
         } else {
             enquiriesFound.value = true
             warning.title = ""

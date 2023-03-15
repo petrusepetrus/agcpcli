@@ -1,5 +1,5 @@
 <template>
-    <div class="relative bg-gray-50  py-8 md:py-12 lg:py-24">
+    <div class="bg-white relative py-8 md:py-12 lg:py-24">
         <div class="relative">
             <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 class="text-lg font-semibold text-cyan-600">How We Work</h2>
@@ -12,11 +12,11 @@
             </div>
             <div class="mx-auto mt-12 grid gap-8 px-2 md:px-4 lg:max-w-7xl lg:grid-cols-3 lg:px-8">
                 <div v-for="post in methodologyParts" :key="post.id"
-                     class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+                     class="flex flex-col overflow-hidden rounded-lg shadow-md">
                     <div class="flex-shrink-0">
                         <img class="h-48 w-full object-cover" :src="imageURL(post.imageUrl)" alt=""/>
                     </div>
-                    <div class="flex flex-1 flex-col justify-between bg-white p-6">
+                    <div class="flex flex-1 flex-col justify-between bg-gray-50  p-6">
 
                         <div class="flex-1">
                             <div class="mt-2 block h-48 ">
@@ -132,9 +132,9 @@ const methodologyParts = [
         imageUrl:
               '/images/implementation_1024x680.jpg',
         preview:
-              'We can deploy to our hosting services or your own hosting provider, as needed. ' +
-              'An agreed period of post-implementation support to ensure the website is behaving as expected ' +
-              'is included in the proposal.',
+              'We can set up and deploy to our hosting services or yours, as needed. ' +
+              'Included in the proposal is an agreed period of post-implementation support that ensures ' +
+              ' the website is behaving as expected.',
         author: {
             name: 'Daniela Metz',
             imageUrl:

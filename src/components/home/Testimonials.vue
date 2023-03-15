@@ -7,7 +7,7 @@
             What Some Of Our Clients Say
         </p>
 
-        <div class="lg:gap-8 mt-8 md:mt-16 lg:mt-16 grid grid-cols-3 lg:px-8 md:px-8 px-2 ">
+        <div class="lg:gap-8 md:gap-24 mt-8 md:mt-16 lg:mt-16 grid grid-cols-3 lg:px-8 md:px-8 px-2 ">
             <div
                   v-for="testimonial in testimonialParts"
                   :key="testimonial.id"

@@ -267,7 +267,7 @@ let error = reactive({})
 let warning = reactive({})
 let queryParams = reactive({
     pageNumber: 1,
-    recordsPerPage: 1,
+    recordsPerPage: 5,
     nameQuery: "",
     userTypeQuery: ""
 })
@@ -379,9 +379,12 @@ const getUsersList = async () => {
     flgIsLoading.value = true
     usersFound.value = false
     try {
+        warning= {}
         let response = await getUsers(queryParams)
         if (response.data.length === 0) {
             usersFound.value = false
+            warning.title="No users were found."
+            warning.description="No users were found matching your criteria."
         } else {
             usersFound.value = true
             warning.title = ""

@@ -34,12 +34,12 @@
             </div>
         </div>
         <div v-if="!userFound" class="bg-black rounded-md border-1 shadow-inner shadow-gray-500 sm:rounded-lg relative">
-            <div class="px-4 py-5 sm:p-6 flex flex-row flex-wrap relative">
+            <div class="px-8 py-5 sm:p-6 flex flex-row flex-wrap ">
                 <h3 class="text-lg font-medium leading-6 text-teal-400">Invite</h3>
                 <div class="mt-2 max-w-xl text-sm text-gray-400 mb-12">
                     <p>Invite the enquirer to register as a user on the system.</p>
                 </div>
-                <div class="px-8 absolute inset-x-1 bottom-2 px-4">
+                <div class="px-8 absolute inset-x-5 bottom-2 px-4">
                 <BaseButton
                       title="Invite"
                       :submitting="isSubmitting"

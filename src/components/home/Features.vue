@@ -13,12 +13,12 @@
             <div class="mt-12">
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-1 lg:grid-cols-3">
                     <div v-for="feature in features" :key="feature.name" class="pt-6 ">
-                        <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8 shadow-md">
                             <div class="-mt-6 h-40">
                                 <div classs="">
-                        <span class="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 p-3 shadow-lg">
-                          <component :is="feature.icon" class="h-6 w-6 text-white" aria-hidden="true"/>
-                        </span>
+                                    <span class="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 p-3 shadow-lg">
+                                      <component :is="feature.icon" class="h-6 w-6 text-white" aria-hidden="true"/>
+                                    </span>
                                 </div>
                                 <h3 class="mt-4 text-lg font-medium tracking-tight text-gray-900">
                                     {{ feature.name }}</h3>

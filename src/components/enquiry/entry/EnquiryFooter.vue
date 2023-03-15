@@ -3,7 +3,7 @@
           novalidate class="bg-black col-span-2"
           @submit.prevent="onSubmit">
         <div class="mt-0">
-            <fieldset>
+            <fieldset class="">
                 <div class="mt-4 space-y-4">
 
                     <BaseCheckbox
@@ -17,7 +17,7 @@
                           :inputClass="'focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded'"
                     >
                     </BaseCheckbox>
-                    <div class="text-sm text-gray-300 flex float-left whitespace-nowrap">
+                    <div class="text-sm text-gray-300 flex float-left" >
                         <BaseCheckbox
                               v-model="terms_and_conditions"
                               name="terms_and_conditions"
@@ -30,13 +30,17 @@
                               :labelDescriptionClass="'text-gray-400'"
                               :inputClass="'float-left focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded'"
                         />
-                        &nbspI have read and agree to the
-                        <router-link
-                              to="/data-usage-policy"
-                              class="text-left border-teal-500 text-teal-500 border-b-2 hover:text-teal-200"
-                        >
-                            &nbspdata usage policy
-                        </router-link>
+                        <div class="flex-wrap justify-center">
+                            &nbspI have read and agree to the
+                            <router-link
+                                  to="/data-usage-policy"
+                                  target="_blank"
+                                  class="text-left border-teal-500 text-teal-500 border-b-2 hover:text-teal-200"
+                            >
+                                &nbspdata usage policy
+                            </router-link>
+                            &nbsp(opens in new window).
+                        </div>
 
                     </div>
                 </div>
@@ -54,7 +58,7 @@
                    target="_blank"
                    class="text-left border-teal-500 text-teal-500 border-b-2 hover:text-teal-200"
                 >Terms of Service
-                </a> apply.
+                </a> apply (open in new windows).
             </div>
         </div>
     </form>

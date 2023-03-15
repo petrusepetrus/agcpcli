@@ -44,7 +44,7 @@
                             <EnquiryConfirmation></EnquiryConfirmation>
                         </div>
                     </div>
-                    <div class="mt-12 -mb-16 sm:-mb-48 lg:relative lg:m-0 ">
+                    <div class="lg:mt-24 lg:-mb-16 md:-mb-24 mt-12  sm:-mb-48 lg:relative lg:m-0 ">
                         <div class="mx-auto  max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                             <img class="lg:absolute lg:inset-y-0 lg:left-0 max-h-80 "
                                  src="/images/website_design.jpg" alt=""/>
@@ -57,7 +57,6 @@
         <div class="min-h-screen bg-black ">
             <div class="bg-black mx-auto max-7-4xl md:pt-20 lg:pt-0 sm:pt-0">
                 <main>
-
                     <!-- Side-by-side grid -->
                     <div v-if="!flgSubmissionSuccessful" class=" mx-auto max-w-7xl px-4 py-2 sm:col-span-1 md:col-span-2 lg:col-span-3 ">
                         <div

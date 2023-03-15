@@ -93,7 +93,8 @@ export default function useMiscService() {
         return response.data
     }
     const sendInvitation = async (payload) => {
-        let response = await apiClient.post('/invite/enquirer/', payload)
+        console.log(payload)
+        let response = await apiClient.post('/invite/enquirer', payload)
         //console.log(response.data)
         return response.data
     }
