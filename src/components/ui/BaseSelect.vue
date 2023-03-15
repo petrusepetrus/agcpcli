@@ -24,6 +24,9 @@
           :required="required"
           :disabled="disabled"
     >
+        <option v-if="promptOption!==''"
+                :value="null"
+        >--{{promptOption}}--</option>
         <option
               v-for="option in options"
               :key="option"
@@ -86,6 +89,10 @@ export default {
         inputClass:{
             type:String,
             default:"appearance-none block w-full px-3 py-2 border border-teal-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 md:text-md text-sm"
+        },
+        promptOption:{
+            type:String,
+            default:''
         }
     },
     setup(props, context) {

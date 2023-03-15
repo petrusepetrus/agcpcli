@@ -130,7 +130,8 @@
                 <BaseSelect
                       v-model="enquiry_type"
                       label="Enquiry Type"
-                      :value="null"
+                      value="'undefined'"
+                      :prompt-option="'Please Select Your Enquiry Type'"
                       :options="enquiry_types"
                       :required="true"
                       :disabled="props.disabled"

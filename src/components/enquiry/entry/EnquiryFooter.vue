@@ -39,7 +39,7 @@
                             >
                                 &nbspdata usage policy
                             </router-link>
-                            &nbsp(opens in new window).
+                            &nbsp<span class="text-xs text-gray-500">(will open in new window)</span>
                         </div>
 
                     </div>
@@ -47,7 +47,7 @@
 
             </fieldset>
             <div class="text-sm text-gray-300 mt-4">
-                This site is protected by reCAPTCHA and the Google
+                This site is protected by reCAPTCHA and Google's
                 <a href="https://policies.google.com/privacy"
                    target="_blank"
                    class="text-left border-teal-500 text-teal-500 border-b-2 hover:text-teal-200"
@@ -58,7 +58,7 @@
                    target="_blank"
                    class="text-left border-teal-500 text-teal-500 border-b-2 hover:text-teal-200"
                 >Terms of Service
-                </a> apply (open in new windows).
+                </a> apply <span class="text-xs text-gray-500">(will open in new window(s))</span>
             </div>
         </div>
     </form>

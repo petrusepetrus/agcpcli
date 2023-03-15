@@ -90,7 +90,7 @@
                             </EnquiryWebsiteMaintenanceCard>
                         </div>
                         <div
-                              v-if="enquiryType==='Search Engine Optimisation and Ranking' & !flgSubmissionSuccessful"
+                              v-if="enquiryType==='Search Engine Optimisation and Digital Marketing' & !flgSubmissionSuccessful"
                               class="p-6 mt-2 border-1 border-gray-100 rounded-sm shadow-md shadow-gray-300/50">
                             <EnquirySEOCard
                                   ref="enquirySEOCard">
