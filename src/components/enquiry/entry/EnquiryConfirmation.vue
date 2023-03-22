@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-window.scrollTo({ top: 0, behavior: "smooth" });
+
 </script>
 
 <style scoped>

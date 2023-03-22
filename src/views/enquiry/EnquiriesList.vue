@@ -132,6 +132,9 @@
                                 <div class="px-3 text-sm text-gray-300  ">
                                     {{ enquiry.id }}
                                 </div>
+                                <div class="px-3 text-sm text-gray-300  ">
+                                    {{formatDate(enquiry.created_at)}}
+                                </div>
                             </td>
                             <td class="hidden px-3 py-4 text-sm text-gray-300 sm:table-cell">
                                 <div class="px-3">
@@ -247,6 +250,7 @@ import BaseInput from "../../components/ui/BaseInput.vue";
 /*-------------------------------------------------------------------------------*/
 import useMiscService from "../../services/misc/useMiscService.js";
 import {testIfPromise} from "../../utils/GeneralUtilities.js"
+import moment from "moment";
 
 /*-------------------------------------------------------------------------------*/
 /* Stores
@@ -632,6 +636,9 @@ const loadEnquiryStatuses = async () => {
             //error.description=e
         })
     }
+}
+const formatDate=(date)=>{
+    return moment(String(date)).format('DD/MM/YY')
 }
 /*-------------------------------------------------------------------------------*/
 

@@ -1,4 +1,4 @@
-function testIfPromise (testObject) {
+function testIfPromise(testObject) {
     if (
         testObject !== null &&
         typeof testObject === 'object' &&
@@ -10,4 +10,12 @@ function testIfPromise (testObject) {
         return false;
     }
 }
-export{testIfPromise}
+
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+export {
+    testIfPromise,
+    scrollToTop
+}

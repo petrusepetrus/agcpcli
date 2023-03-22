@@ -58,6 +58,14 @@
               :error-title=errorMessage.title>
         </BaseErrorMessage>
     </div>
+    <div class="mt-6 lg:col-span-1 md:col-span-1 sm:col-span-4">
+        <BaseInformationMessage
+              v-if="informationMessage.title"
+              :title=informationMessage.title
+              :description="informationMessage.description"
+              :error-title=informationMessage.title>
+        </BaseInformationMessage>
+    </div>
 
 </template>
 
@@ -83,16 +91,15 @@ import {useRoute,useRouter} from "vue-router";
 /*-------------------------------------------------------------------------------*/
 import BaseButton from "../../ui/BaseButton.vue";
 import {useEnquiryStore} from "../../../stores/EnquiryStore.js";
-import {testIfPromise} from "../../../utils/GeneralUtilities.js";
 import BaseErrorMessage from "../../ui/BaseErrorMessage.vue";
-
+import BaseInformationMessage from "../../ui/BaseInformationMessage.vue";
 
 /*-------------------------------------------------------------------------------*/
 /* Services and Utilities
 /*-------------------------------------------------------------------------------*/
 import useErrorService from "../../../services/useErrorService.js";
 import useMiscService from "../../../services/misc/useMiscService.js";
-
+import {testIfPromise} from "../../../utils/GeneralUtilities.js";
 /*-------------------------------------------------------------------------------*/
 /* Stores
 /*-------------------------------------------------------------------------------*/
@@ -114,6 +121,7 @@ const emit = defineEmits(['addComment'])
 /* Variable Declaration and Initialisation
 /*===============================================================================*/
 let errorMessage = reactive({})
+let informationMessage = reactive({})
 const isSubmitting = ref(false)
 const userFound = ref(false)
 
@@ -140,6 +148,7 @@ const sendInvite = async () => {
     }
     try {
         errorMessage.title = null
+        informationMessage.title=null
         isSubmitting.value = true
         let payload = {}
         payload.enquiry_id=enquiryStore.enquiry.id
@@ -149,6 +158,8 @@ const sendInvite = async () => {
         payload =enquiryStore.enquiry.id
         //console.log(payload)
         let response=await getEnquiry(payload)
+        informationMessage.title="Invitation Sent"
+        informationMessage.description="Congratulations - your invitation was successfuly sent."
         enquiryStore.enquiry=response.data
         isSubmitting.value = false
     } catch (e) {

@@ -278,11 +278,12 @@ const saveEnquiry = async () => {
         errorMessage.value.description = null
         flgSubmissionSuccessful.value = true
         flgIsSubmitting.value = false
+        window.scrollTo({ top: 0, behavior: "smooth" });
         setTimeout(() => {
                   //flgSubmissionSuccessful.value = false
                   router.push({name: "home"})
               },
-              2000
+              5000
         )
 
     } catch (e) {
