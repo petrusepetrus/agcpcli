@@ -237,7 +237,7 @@ const onSubmit = async (e) => {
         let sfm4 = await enquiryWebsiteMaintenanceCard.value.validateForm()
         formsToValidate.push(sfm4)
     }
-    if (enquiryType.value === 'Search Engine Optimisation and Ranking') {
+    if (enquiryType.value === 'Search Engine Optimisation and Digital Marketing') {
         let sfm5 = await enquirySEOCard.value.validateForm()
         formsToValidate.push(sfm5)
     }
